@@ -2,7 +2,22 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-Stage = require('./stageModel')
+
+var StageSchema = new Schema({
+    title: {
+        type: String,
+        required: 'Please, enter a title for this stage'
+    },
+    description: {
+        type: String
+    },
+    price: {
+        type: Number,
+        min: 0
+    }
+
+}, { strict: false });
+
 
 var TripSchema = new Schema({
     ticker: {
@@ -37,17 +52,17 @@ var TripSchema = new Schema({
         default: []
     },
     cancelled: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
     cancelationReasons: {
         type: String
     },
     published: {
-        type: boolean,
+        type: Boolean,
         default: false
     },
-    stages: [Stage]
+    stages: [StageSchema]
 }, { strict: false });
 
 
