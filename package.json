@@ -1,0 +1,25 @@
+{
+  "name": "acme-explorer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belramgut/ACME-Explorer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belramgut/ACME-Explorer/issues"
+  },
+  "homepage": "https://github.com/belramgut/ACME-Explorer#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  }
+}
