@@ -16,7 +16,7 @@ var ApplicationSchema = new Schema({
     comments: [String],
     explorer: {
         type: Schema.Types.ObjectId,
-        ref: 'Explorer'
+        ref: 'Actor'
     },
     trip: {
         type: Schema.Types.ObjectId,
