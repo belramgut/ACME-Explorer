@@ -49,8 +49,11 @@ var ActorSchema= new Schema({
   banned:{
       type: Boolean,
       default: false,
-  }
-  
+  },
+  flat_rate:{
+    type: Boolean,
+    default: false,
+ }  
 },
 
 {strict:false}); //puede recibir cosas que no estan en el modelo
