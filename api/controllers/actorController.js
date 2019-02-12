@@ -13,7 +13,7 @@ exports.list_all_actors = function (req, res) {
         }
     });
 };
-
+//check administrator actor rol
 exports.create_an_actor = function (req, res) {
     var new_actor = new actor(req.body);
 
@@ -26,7 +26,7 @@ exports.create_an_actor = function (req, res) {
         }
     });
 };
-
+//check administrator actor rol
 exports.read_a_actor = function (req, res) {
     Actor.findById(req.params.actorId, function (err, actor) {
         if (err) {
@@ -37,7 +37,7 @@ exports.read_a_actor = function (req, res) {
         }
     });
 };
-
+//check administrator actor rol
 exports.update_a_actor = function (req, res) {
     Actor.findById(req.params.actorId, function (err, actor) {
         if (err) {
@@ -55,7 +55,7 @@ exports.update_a_actor = function (req, res) {
         }
     });
 };
-
+//check administrator actor rol
 exports.delete_a_actor = function (req, res) {
     Actor.remove({
         _id: req.params.actorId
