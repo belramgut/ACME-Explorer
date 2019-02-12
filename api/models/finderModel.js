@@ -27,7 +27,7 @@ var FinderSchema = new Schema({
     },
     explorer: {
         type: Schema.Types.ObjectId,
-        ref: 'Explorer'
+        ref: 'Actor'
     },
 
 }, { strict: false });
