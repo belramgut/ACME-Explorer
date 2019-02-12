@@ -31,10 +31,14 @@ app.use(bodyParser.json());
 var routesTrips = require('./api/routes/tripRouter');
 var routesApplication = require('./api/routes/applicationRouter');
 var routesFinder = require('./api/routes/finderRouter');
+var routesActor = require('./api/routes/actorRouter');
+var routesSponsorShips=require('./api/routes/sponsorShipRouter');
 
 routesTrips(app);
 routesApplication(app);
 routesFinder(app);
+routesActor(app);
+routesSponsorShips(app);
 
 console.log("Connecting DB to: " + mongoDBURI);
 mongoose.connection.on("open", function (err, conn) {
