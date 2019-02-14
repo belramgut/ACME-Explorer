@@ -103,6 +103,13 @@ TripSchema.pre('save', async function (callback) {
 
     new_trip.ticker = generated_ticker;
 
+    var generated_price = 0.0;
+
+    this.stages.forEach(element => {
+        generated_price = generated_price + element.price
+    });
+
+    this.price = generated_price;
 
     callback();
 
