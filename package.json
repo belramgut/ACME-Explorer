@@ -19,7 +19,9 @@
   "homepage": "https://github.com/belramgut/ACME-Explorer#readme",
   "dependencies": {
     "bcrypt": "^3.0.4",
+    "dateformat": "^3.0.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.10"
+    "mongoose": "^5.4.10",
+    "nanoid": "^2.0.1"
   }
 }

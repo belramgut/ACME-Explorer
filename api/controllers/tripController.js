@@ -68,3 +68,9 @@ exports.delete_a_trip = function (req, res) {
         }
     });
 };
+
+exports.search_by_keyword = function (req, res) {
+    //Check if keyword param exists (keyword: req.query.keyword)
+    console.log('Searching a trip depending on param');
+    res.send('Trip returned from the trip search');
+}
