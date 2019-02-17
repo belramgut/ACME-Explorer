@@ -3,8 +3,10 @@
 module.exports = function (app) {
     var application = require('../controllers/applicationController');
 
+    app.route('/v1/applications/search')
+        .get(application.search_applications);
+
     app.route('/v1/applications')
-        .get(application.list_all_applications)
         .post(application.create_an_application);
 
     app.route('/v1/application/:applicationId')

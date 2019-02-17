@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
 Finder = mongoose.model('Finder');
 
-exports.list_all_finders = function (req, res) {
+exports.search_finders = function (req, res) {
     Finder.find({}, function (err, finders) {
         if (err) {
             res.send(err);
@@ -20,17 +20,6 @@ exports.create_a_finder = function (req, res) {
     new_finder.save(function (error, finder) {
         if (error) {
             res.send(error);
-        }
-        else {
-            res.json(finder);
-        }
-    });
-};
-
-exports.read_a_finder = function (req, res) {
-    Finder.findById(req.params.finderId, function (err, finder) {
-        if (err) {
-            res.send(err);
         }
         else {
             res.json(finder);

@@ -1,9 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-Application = mongoose.model('Application');
+    Application = mongoose.model('Application');
 
-exports.list_all_applications = function (req, res) {
+exports.search_applications = function (req, res) {
     Application.find({}, function (err, applications) {
         if (err) {
             res.send(err);
