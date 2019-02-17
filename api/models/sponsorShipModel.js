@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Actor = required('./actorModel');
+//var Actor = required('./actorModel');
 var SponsorShipSchema = new Schema({
 
     banner: {

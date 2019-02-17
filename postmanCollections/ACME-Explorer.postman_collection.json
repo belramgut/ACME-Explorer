@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "db8c7591-165b-4fdc-af68-421cf4ec99ff",
+		"name": "ACME-Explorer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /trips",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /trips",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"requirements\": [],\n        \"cancelled\": false,\n       \n        \"published\": false,\n        \"title\": \"Nuevo viaje\",\n        \"description\": \"Insertando nuevo viaje de prueba\",\n        \"startDate\": \"2020-08-28T04:11:00.000Z\",\n        \"endDate\": \"2020-08-30T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"Primera fase\",\"description\":\"Descripción de la primera fase\", \"price\":20.20},{\"title\":\"Segunda fase\",\"description\":\"Descripción de la segunda fase\", \"price\":20.20}],\n        \"pictures\": []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /trips/tripId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips/5c5c5f55a7cf1257458b2488",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips",
+						"5c5c5f55a7cf1257458b2488"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT trip/tripId",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"requirements\" : [\"hola\",\"hola\"],\n    \"cancelled\" : true,\n    \"published\" : false,\n    \"title\" : \"Decimocuarto viaje viaje\",\n    \"description\" : \"Probando cancelled y razones\",\n    \"price\" : 90.23,\n    \"startDate\" : \"2021-08-28T04:11:00.000Z\",\n    \"endDate\" : \"2020-08-30T04:11:00.000Z\",\n    \"stages\" : [],\n    \"pictures\" : []\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips/5c65465d540889030bebb75e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips",
+						"5c65465d540889030bebb75e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /trips/tripId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips/5c65253b33164c6f0261d4ce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips",
+						"5c65253b33164c6f0261d4ce"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET trips/search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/trips/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"trips",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
