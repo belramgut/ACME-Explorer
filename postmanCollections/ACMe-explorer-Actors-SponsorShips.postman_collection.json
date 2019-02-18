@@ -1,7 +1,7 @@
 {
 	"variables": [],
 	"info": {
-		"name": "ACMe-explorerPruebas",
+		"name": "ACMe-explorer-Actors-SponsorShips",
 		"_postman_id": "c8ac55c9-d66a-4096-bb94-9fd94f8e7076",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
@@ -280,7 +280,7 @@
 				{
 					"name": "DELETE A SPONSORSHIP",
 					"request": {
-						"url": "localhost:8080/v1/sponsorShip/5c6a82f8d6d4521fc08c1bd8",
+						"url": "localhost:8080/v1/sponsorShips/5c6a82f8d6d4521fc08c1bd8",
 						"method": "DELETE",
 						"header": [
 							{
@@ -300,7 +300,7 @@
 				{
 					"name": "PUT A SPONSORSHIP",
 					"request": {
-						"url": "localhost:8080/v1/sponsorShip/5c6a0906dd3e1e7c8b1bcaf8",
+						"url": "localhost:8080/v1/sponsorShips/5c6a0906dd3e1e7c8b1bcaf8",
 						"method": "PUT",
 						"header": [
 							{
@@ -320,7 +320,7 @@
 				{
 					"name": "GET AN SPONSORSHIP",
 					"request": {
-						"url": "localhost:8080/v1/sponsorShip/search/5c6a0906dd3e1e7c8b1bcaf8\n",
+						"url": "localhost:8080/v1/sponsorShips/search/5c6a0906dd3e1e7c8b1bcaf8\n",
 						"method": "GET",
 						"header": [
 							{
