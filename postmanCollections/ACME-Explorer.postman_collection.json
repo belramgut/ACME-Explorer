@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "b3dfd8f1-331c-4c62-bef6-d0f5b4360249",
-		"name": "ACME-Explorer",
+		"_postman_id": "613321a8-c84e-444c-aa63-b86595053829",
+		"name": "ACME-Explorer copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -70,7 +70,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/trips/5c5c5f55a7cf1257458b2488",
+					"raw": "http://localhost:8080/v1/trips/5c6a84225a7a9b2e18b476a8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +79,7 @@
 					"path": [
 						"v1",
 						"trips",
-						"5c5c5f55a7cf1257458b2488"
+						"5c6a84225a7a9b2e18b476a8"
 					]
 				}
 			},
@@ -99,10 +99,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requirements\" : [\"hola\",\"hola\"],\n    \"cancelled\" : true,\n    \"published\" : false,\n    \"title\" : \"Decimocuarto viaje viaje\",\n    \"description\" : \"Probando cancelled y razones\",\n    \"price\" : 90.23,\n    \"startDate\" : \"2021-08-28T04:11:00.000Z\",\n    \"endDate\" : \"2020-08-30T04:11:00.000Z\",\n    \"stages\" : [],\n    \"pictures\" : []\n}"
+					"raw": "{\n    \"requirements\": [],\n    \"cancelled\": false,\n    \"published\": false,\n    \"title\": \"Nuevo viaje modificado\",\n    \"description\": \"Insertando nuevo viaje de prueba\",\n    \"startDate\": \"2020-08-28T04:11:00.000Z\",\n    \"endDate\": \"2020-08-30T04:11:00.000Z\",\n    \"stages\": [\n        {\n            \"_id\": \"5c6a84225a7a9b2e18b476aa\",\n            \"title\": \"Primera fase\",\n            \"description\": \"Descripción de la primera fase\",\n            \"price\": 20.2\n        },\n        {\n            \"_id\": \"5c6a84225a7a9b2e18b476a9\",\n            \"title\": \"Segunda fase\",\n            \"description\": \"Descripción de la segunda fase\",\n            \"price\": 20.2\n        }\n    ],\n    \"pictures\": [],\n    \"ticker\": \"190218-RTJL\",\n    \"price\": 40.4\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/trips/5c65465d540889030bebb75e",
+					"raw": "http://localhost:8080/v1/trips/5c6a84225a7a9b2e18b476a8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +111,7 @@
 					"path": [
 						"v1",
 						"trips",
-						"5c65465d540889030bebb75e"
+						"5c6a84225a7a9b2e18b476a8"
 					]
 				}
 			},
