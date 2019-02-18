@@ -4,18 +4,8 @@ var mongoose = require('mongoose'),
 SponsorShip = mongoose.model('SponsorShip');
 
 
-exports.list_all_sponsorShips = function (req, res) {
-    SponsorShip.find({}, function (err, actors) {
-            if (err) {
-                res.send(err);
-            }
-            else {
-                res.json(actors);
-            }
-        });
-};    
 exports.search_a_sponsorShip = function (req, res) {
-    SponsorShip.findById(req.params.spId, function (err, sponsorShip) {
+    SponsorShip.findById(req.params.sponsorShipId, function (err, sponsorShip) {
         if (err) {
             res.send(err);
         }
@@ -27,22 +17,25 @@ exports.search_a_sponsorShip = function (req, res) {
 
 
 exports.update_a_sponsorShip = function (req, res) {
-    SponsorShip.findOneAndUpdate({ _id: req.params.spId }, req.body, { new: true }, function (err, sponsorShips) {
+    SponsorShip.findById(req.params.sponsorShipId, function (err, actor) {
         if (err) {
-            if (err.name == 'ValidationError') {
-                res.status(422).send(err);
-            }
-            else {
-                res.status(500).send(err);
-            }
+            res.send(err);
         }
         else {
-            res.json(sponsorShips);
+            SponsorShip.findOneAndUpdate({ _id: req.params.sponsorShipId }, req.body, { new: true }, function (err, actor) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.json(actor);
+                }
+            });
         }
     });
 };
+
 exports.delete_a_sponsorShip = function (req, res) {
-    SponsorShip.deleteOne({ _id: req.params.spId }, function (err, sponsorShips) {
+    SponsorShip.remove({ _id: req.params.sponsorShipId }, function (err, sponsorShips) {
         if (err) {
             res.send(err);
         }
@@ -63,10 +56,3 @@ exports.create_a_sponsorShip = function (req, res) {
         }
     });
 };
-
-
-
-
-
-
-

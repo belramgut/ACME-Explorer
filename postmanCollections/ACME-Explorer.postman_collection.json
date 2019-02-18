@@ -1,10 +1,503 @@
 {
 	"info": {
-		"_postman_id": "613321a8-c84e-444c-aa63-b86595053829",
-		"name": "ACME-Explorer copy",
+		"_postman_id": "b3dfd8f1-331c-4c62-bef6-d0f5b4360249",
+		"name": "ACME-Explorer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "ACTORS",
+			"item": [
+				{
+					"name": "POST ACTOR EMPTY REQUIRED FIELD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor_n@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR FAKE EMAIL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR FAKE PHONE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsorpp_p_o@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"0\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ACTORS",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET AN ACTOR",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors/5c69c780fe34ef3ab388aab6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors",
+								"5c69c780fe34ef3ab388aab6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT AN ACTOR ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SponsorName_PUT\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors/5c69b7e67bd8a02c85a8734e",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors",
+								"5c69b7e67bd8a02c85a8734e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE AN ACTOR",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors/5c69b945af26172ee262fd61",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors",
+								"5c69b945af26172ee262fd61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR SPONSOR(flat_rate:true)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\",\n\t\"flat_rate\":true\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR SPONSOR(flat_rate:false)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR ADMINISTRATOR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"administratorName\",\n\t\"surname\": \"administratorSurname\",\n\t\"email\": \"administrator@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"ADMINISTRATOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SPONSORSHIPS",
+			"item": [
+				{
+					"name": "POST SPONSORSHIP ACTOR (flat_rate:true)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"https://github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c69fa06826f8b6b6accbf8a\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST SPONSORSHIP ACTOR (flat_rate:false)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"http://masteroficial.us.es/mis/\",\n\t\"sponsor\": \"5c6a7f69d2093f1cec42478f\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST SPONSORTRIP(delete)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"http://masteroficial.us.es/mis/\",\n\t\"sponsor\": \"5c69d0c7db9c634728b1713f\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE A SPONSORSHIP",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/5c6a82f8d6d4521fc08c1bd8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"5c6a82f8d6d4521fc08c1bd8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT A SPONSORSHIP",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"https://us.es\"\n\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/5c6a0906dd3e1e7c8b1bcaf8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"5c6a0906dd3e1e7c8b1bcaf8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET AN SPONSORSHIP",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/search/5c6a0906dd3e1e7c8b1bcaf8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"search",
+								"5c6a0906dd3e1e7c8b1bcaf8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST SPONSORSHIP FACE LANDING PAGE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c69fa06826f8b6b6accbf8a\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "GET /trips",
 			"request": {
@@ -70,7 +563,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/trips/5c6a84225a7a9b2e18b476a8",
+					"raw": "http://localhost:8080/v1/trips/5c5c5f55a7cf1257458b2488",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +572,7 @@
 					"path": [
 						"v1",
 						"trips",
-						"5c6a84225a7a9b2e18b476a8"
+						"5c5c5f55a7cf1257458b2488"
 					]
 				}
 			},
@@ -99,10 +592,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"requirements\": [],\n    \"cancelled\": false,\n    \"published\": false,\n    \"title\": \"Nuevo viaje modificado\",\n    \"description\": \"Insertando nuevo viaje de prueba\",\n    \"startDate\": \"2020-08-28T04:11:00.000Z\",\n    \"endDate\": \"2020-08-30T04:11:00.000Z\",\n    \"stages\": [\n        {\n            \"_id\": \"5c6a84225a7a9b2e18b476aa\",\n            \"title\": \"Primera fase\",\n            \"description\": \"Descripción de la primera fase\",\n            \"price\": 20.2\n        },\n        {\n            \"_id\": \"5c6a84225a7a9b2e18b476a9\",\n            \"title\": \"Segunda fase\",\n            \"description\": \"Descripción de la segunda fase\",\n            \"price\": 20.2\n        }\n    ],\n    \"pictures\": [],\n    \"ticker\": \"190218-RTJL\",\n    \"price\": 40.4\n}"
+					"raw": "{\n    \"requirements\" : [\"hola\",\"hola\"],\n    \"cancelled\" : true,\n    \"published\" : false,\n    \"title\" : \"Decimocuarto viaje viaje\",\n    \"description\" : \"Probando cancelled y razones\",\n    \"price\" : 90.23,\n    \"startDate\" : \"2021-08-28T04:11:00.000Z\",\n    \"endDate\" : \"2020-08-30T04:11:00.000Z\",\n    \"stages\" : [],\n    \"pictures\" : []\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/trips/5c6a84225a7a9b2e18b476a8",
+					"raw": "http://localhost:8080/v1/trips/5c65465d540889030bebb75e",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +604,7 @@
 					"path": [
 						"v1",
 						"trips",
-						"5c6a84225a7a9b2e18b476a8"
+						"5c65465d540889030bebb75e"
 					]
 				}
 			},
