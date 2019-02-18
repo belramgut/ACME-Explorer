@@ -11,7 +11,8 @@ var ApplicationSchema = new Schema({
     status: [{
         type: String,
         required: 'Kindly enter the application status',
-        enum: ['PENDING', 'REJECTED', 'DUE', 'ACCEPTED', 'CANCELLED']
+        enum: ['PENDING', 'REJECTED', 'DUE', 'ACCEPTED', 'CANCELLED'],
+        default: 'PENDING'
     }],
     comments: [String],
     explorer: {
