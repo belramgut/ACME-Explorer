@@ -9,7 +9,7 @@ module.exports = function (app) {
     app.route('/v1/finders')
         .post(finder.create_a_finder);
 
-    app.route('/v1/finders/:finderId')
+    app.route('/v1/finder/:finderId')
         .delete(finder.delete_an_finder)
         .put(finder.update_a_finder)
 };
