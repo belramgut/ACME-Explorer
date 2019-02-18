@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
+require('mongoose-type-url');
 var Schema = mongoose.Schema;
-//var Actor = required('./actorModel');
+const validator= require('validator');
+Actor = mongoose.model('Actor');
+
 var SponsorShipSchema = new Schema({
 
     banner: {
@@ -9,7 +12,11 @@ var SponsorShipSchema = new Schema({
     },
     landingPage: {
         type: String,
-        requied: 'Kindly enter the landing page'
+        requied: 'Kindly enter the landing page',
+        validate: { 
+            validator: value => validator.isURL(value, { protocols: ['http','https','ftp'], require_tld: true, require_protocol: true }),
+            message: 'Must be a Valid URL' 
+          }
     },
     payed: {
         type: Boolean,
@@ -23,19 +30,27 @@ var SponsorShipSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Trip'
     }
-})
+},{strict:false}); //puede recibir cosas que no estan en el modelo
 
-SponsorShipSchema.pre('save', function (callback) {
+SponsorShipSchema.pre('save', async function (callback) {
     //buscar el actor por el item
     //comprobar que tiene el flat_rate a true si true payed true
-    Actor.findById(this.sponsor, function (err, sponsor) {
+    
+   var sponsorship =Actor.findById({_id:this.sponsor}, function (err, sponsor) {
+       
         if (sponsor.flat_rate) {
-            this.payed = true;
+            console.log("Flat rate true then sponsor ship is payed");
+            sponsorship.updateOne({$set:{payed:true}});
+        }else{
+            console.log("Flat rate false then sponsor ship is not payed");
         }
-    })
-
+    
+    console.log(sponsorship.payed);
     callback();
+});  
 });
 
-module.exports = mongoose.model('SponsorShip', SponsorShipSchema);
 
+
+
+module.exports = mongoose.model('SponsorShip', SponsorShipSchema);

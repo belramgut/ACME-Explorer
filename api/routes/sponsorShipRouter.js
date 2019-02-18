@@ -12,19 +12,19 @@ module.exports = function (app) {
    * @type get 
    * @url /v1/sponsorShips
   */ 
-    app.route('/v1/sponsorShips')
+    app.route('/v1/allsponsorShips')
         .get(sponsorShip.list_all_sponsorShips);
     
-    /*  
+    
     app.route('/v1/sponsorShip/search') //checkactorsponsor-rol
         .get(sponsorShip.search_a_sponsorShip);
     
         
-    app.route('/v1/sponsorShip/:idSponsorShip')
+    app.route('/v1/sponsorShip/:sponsorShipId')
         .put(sponsorShip.update_a_sponsorShip)
         .delete(sponsorShip.delete_a_sponsorShip);
 
     app.route('/v1/sponsorShips') //checkactorsponsor-rol
         .post(sponsorShip.create_a_sponsorShip);
-    */
+    
 };

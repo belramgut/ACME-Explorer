@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Actor = mongoose.model('Actor');
+Actor = mongoose.model('Actor');
 
 exports.list_all_actors = function (req, res) {
     Actor.find({}, function (err, actors) {
@@ -15,7 +15,7 @@ exports.list_all_actors = function (req, res) {
 };
 //check administrator actor rol
 exports.create_an_actor = function (req, res) {
-    var new_actor = new actor(req.body);
+    var new_actor = new Actor(req.body);
 
     new_actor.save(function (error, actor) {
         if (error) {
@@ -37,6 +37,7 @@ exports.read_an_actor = function (req, res) {
         }
     });
 };
+
 //check administrator actor rol
 exports.update_an_actor = function (req, res) {
     Actor.findById(req.params.actorId, function (err, actor) {
@@ -44,7 +45,7 @@ exports.update_an_actor = function (req, res) {
             res.send(err);
         }
         else {
-            actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, order) {
+            Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
                 if (err) {
                     res.send(err);
                 }
