@@ -14,7 +14,7 @@ module.exports = function (app) {
      * @url /v1/sponsorShip/search/:sponsorShipId
      */
       
-    app.route('/v1/sponsorShip/search/:sponsorShipId') //checkactorsponsor-rol
+    app.route('/v1/sponsorShips/search/:sponsorShipId') //checkactorsponsor-rol
         .get(sponsorShip.search_a_sponsorShip);
     
     /**
@@ -26,9 +26,10 @@ module.exports = function (app) {
      * @section sponsorShip
      * @type  put delete
      * @url /v1/sponsorShip/:sponsorShipId
+     * @param {String} sponsorShipId
      */
         
-    app.route('/v1/sponsorShip/:sponsorShipId')
+    app.route('/v1/sponsorShips/:sponsorShipId')
         .put(sponsorShip.update_a_sponsorShip)
         .delete(sponsorShip.delete_a_sponsorShip);
 
@@ -40,6 +41,7 @@ module.exports = function (app) {
      * @section sponsorShip
      * @type  post
      * @url /v1/sponsorShip/:sponsorShipId
+     * 
      */
 
     app.route('/v1/sponsorShips') //checkactorsponsor-rol
