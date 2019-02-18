@@ -36,18 +36,15 @@ SponsorShipSchema.pre('save', async function (callback) {
     //buscar el actor por el item
     //comprobar que tiene el flat_rate a true si true payed true
     
-   var sponsorship =Actor.findById({_id:this.sponsor}, function (err, sponsor) {
-       
-        if (sponsor.flat_rate) {
-            console.log("Flat rate true then sponsor ship is payed");
-            sponsorship.updateOne({$set:{payed:true}});
-        }else{
-            console.log("Flat rate false then sponsor ship is not payed");
-        }
-    
-    console.log(sponsorship.payed);
+    const sponsor = await Actor.findById({_id: this.sponsor}); 
+    if (sponsor.flat_rate) {
+        console.log("Flat rate true then sponsor ship is payed");
+        this.payed = true;
+    }else{
+        console.log("Flat rate false then sponsor ship is not payed");
+    }
+    console.log(this.payed);
     callback();
-});  
 });
 
 
