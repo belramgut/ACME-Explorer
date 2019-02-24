@@ -13,10 +13,13 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 
+var mongoDBUser = process.env.mongoDBUser || "myUser";
+var mongoDbPass = process.env.mongoDbPass || "myUserPassword";
+var mongoDbCredentials = (mongoDBUser && mongoDbPass) ? mongoDBUser + ":" + mongoDbPass + "@" : "";
 var mongoDBHostname = process.env.mongoDBHostname || "localhost";
 var mongoDBPort = process.env.mongoDBPort || "27017";
 var mongoDBName = process.env.mongoDBName || "acmeExplorer";
-var mongoDBURI = "mongodb://" + mongoDBHostname + ":" + mongoDBPort + "/" + mongoDBName;
+var mongoDBURI = "mongodb://" + mongoDbCredentials + mongoDBHostname + ":" + mongoDBPort + "/" + mongoDBName;
 
 mongoose.connect(mongoDBURI, {
     reconnectTries: 10,
