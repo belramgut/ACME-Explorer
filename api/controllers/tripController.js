@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 exports.list_all_trips = function (req, res) {
     Trip.find({}, function (err, trips) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             res.json(trips);
@@ -16,10 +16,13 @@ exports.list_all_trips = function (req, res) {
 
 exports.create_a_trip = function (req, res) {
     var new_trip = new Trip(req.body);
-
     new_trip.save(function (error, trip) {
         if (error) {
-            res.send(error);
+            if (error.name == "ValidationError") {
+                res.status(422).send(err);
+            } else {
+                res.status(500).send(err);
+            }
         }
         else {
             res.json(trip);
@@ -30,38 +33,32 @@ exports.create_a_trip = function (req, res) {
 exports.read_a_trip = function (req, res) {
     Trip.findById(req.params.tripId, function (err, trip) {
         if (err) {
-            res.send(err);
-        }
-        else {
+            res.status(500).send(err);
+        } else {
             res.json(trip);
         }
     });
 };
 
 exports.update_a_trip = function (req, res) {
-    Trip.findById(req.params.tripId, function (err, trip) {
+    Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
         if (err) {
-            res.send(err);
-        }
-        else {
-            Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, order) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    res.json(trip);
-                }
-            });
+            if (err.name == 'ValidationError') {
+                res.status(422).send(err);
+            }
+            else {
+                res.status(500).send(err);
+            }
+        } else {
+            res.json(trip);
         }
     });
 };
 
 exports.delete_a_trip = function (req, res) {
-    Trip.remove({
-        _id: req.params.tripId
-    }, function (err, trip) {
+    Trip.deleteOne({ _id: req.params.tripId }, function (err, trip) {
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
         }
         else {
             res.json({ message: 'Trip successfully deleted' });
@@ -69,8 +66,36 @@ exports.delete_a_trip = function (req, res) {
     });
 };
 
+//trips/search?&q="searchString"&startFrom="valor"&pageSize="tam"
 exports.search_by_keyword = function (req, res) {
-    //Check if keyword param exists (keyword: req.query.keyword)
-    console.log('Searching a trip depending on param');
-    res.send('Trip returned from the trip search');
+    var query = {};
+
+    if (req.query.q) {
+        query.$text = { $search: req.query.q };
+    }
+
+    var skip = 0;
+    if (req.query.startFrom) {
+        skip = parseInt(req.query.startFrom);
+    }
+    var limit = 0;
+    if (req.query.pageSize) {
+        limit = parseInt(req.query.pageSize);
+    }
+
+    console.log("Query: " + query + " Skip:" + skip + " Limit:" + limit);
+
+    Trip.find(query)
+        .skip(skip)
+        .limit(limit)
+        .lean()
+        .exec(function (err, trips) {
+            console.log('Start searching trips');
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(trips);
+            }
+            console.log('End searching trips');
+        });
 }
