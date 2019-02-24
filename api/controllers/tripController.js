@@ -69,8 +69,36 @@ exports.delete_a_trip = function (req, res) {
     });
 };
 
+//trips/search?&q="searchString"&startFrom="valor"&pageSize="tam"
 exports.search_by_keyword = function (req, res) {
-    //Check if keyword param exists (keyword: req.query.keyword)
-    console.log('Searching a trip depending on param');
-    res.send('Trip returned from the trip search');
+    var query = {};
+
+    if (req.query.q) {
+        query.$text = { $search: req.query.q };
+    }
+
+    var skip = 0;
+    if (req.query.startFrom) {
+        skip = parseInt(req.query.startFrom);
+    }
+    var limit = 0;
+    if (req.query.pageSize) {
+        limit = parseInt(req.query.pageSize);
+    }
+
+    console.log("Query: " + query + " Skip:" + skip + " Limit:" + limit);
+
+    Trip.find(query)
+        .skip(skip)
+        .limit(limit)
+        .lean()
+        .exec(function (err, trips) {
+            console.log('Start searching trips');
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(trips);
+            }
+            console.log('End searching trips');
+        });
 }
