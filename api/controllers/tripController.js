@@ -18,10 +18,12 @@ exports.create_a_trip = function (req, res) {
     var new_trip = new Trip(req.body);
     new_trip.save(function (error, trip) {
         if (error) {
-            if (error.name == "ValidationError") {
-                res.status(422).send(err);
+            if (error.message == "ManagerRoleError") {
+                res.status(422).send({ Error: error.message, message: "The manager must have the role MANAGER" });
+            } else if (error.name == "ValidationError") {
+                res.status(422).send(error);
             } else {
-                res.status(500).send(err);
+                res.status(500).send(error);
             }
         }
         else {
@@ -66,12 +68,32 @@ exports.delete_a_trip = function (req, res) {
     });
 };
 
-//trips/search?&q="searchString"&startFrom="valor"&pageSize="tam"
+//trips/search?&q="searchString"&sortedBy="price|title"&reverse=false|true"&startFrom="valor"&pageSize="tam"&cancelled="true|false"&published="true|false"&startingPrice="spr"&endingPrice=endpr"
 exports.search_by_keyword = function (req, res) {
     var query = {};
 
     if (req.query.q) {
         query.$text = { $search: req.query.q };
+    }
+
+    if (req.query.startingPrice) {
+        query.price = { $gte: req.query.startingPrice };
+    }
+
+    if (req.query.endingPrice) {
+        query.price = { $lt: req.query.endingPrice };
+    }
+
+    if (req.query.startingPrice && req.query.endingPrice) {
+        query.price = { $gte: req.query.startingPrice, $lt: req.query.endingPrice };
+    }
+
+    if (req.query.cancelled) {
+        query.cancelled = req.query.cancelled;
+    }
+
+    if (req.query.published) {
+        query.published = req.query.published;
     }
 
     var skip = 0;
@@ -83,9 +105,20 @@ exports.search_by_keyword = function (req, res) {
         limit = parseInt(req.query.pageSize);
     }
 
+    var sort = "";
+    if (req.query.reverse == "true") {
+        sort = "-";
+    }
+
+    if (req.query.sortedBy) {
+        sort += req.query.sortedBy;
+    }
+
+    console.log(query);
     console.log("Query: " + query + " Skip:" + skip + " Limit:" + limit);
 
     Trip.find(query)
+        .sort(sort)
         .skip(skip)
         .limit(limit)
         .lean()
