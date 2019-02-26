@@ -18,10 +18,12 @@ exports.create_a_trip = function (req, res) {
     var new_trip = new Trip(req.body);
     new_trip.save(function (error, trip) {
         if (error) {
-            if (error.name == "ValidationError") {
-                res.status(422).send(err);
+            if (error.message == "ManagerRoleError") {
+                res.status(422).send({ Error: error.message, message: "The manager must have the role MANAGER" });
+            } else if (error.name == "ValidationError") {
+                res.status(422).send(error);
             } else {
-                res.status(500).send(err);
+                res.status(500).send(error);
             }
         }
         else {

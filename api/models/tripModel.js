@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = require('mongoose').Types.ObjectId;
-var Application = require('./applicationModel');
+var Actor = require('./actorModel');
 
 const generate = require('nanoid/generate');
 const dateFormat = require('dateformat');
@@ -80,6 +80,10 @@ var TripSchema = new Schema({
         type: Boolean,
         default: false
     },
+    manager: {
+        type: Schema.Types.ObjectId,
+        ref: 'Actor',
+    },
     stages: [StageSchema]
 }, { strict: false });
 
@@ -89,6 +93,11 @@ TripSchema.pre('save', async function (callback) {
     var new_trip = this;
     var date = new Date;
     var day = dateFormat(new Date(), "yymmdd");
+
+    const man = await Actor.findOne({ _id: this.manager }).exec();
+    if (!(man.actorType.indexOf("MANAGER") > -1)) {
+        callback(new Error('ManagerRoleError'));
+    };
 
     var generated_ticker = [day, generate('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)].join('-')
 
@@ -114,6 +123,7 @@ TripSchema.pre('save', async function (callback) {
     callback();
 
 });
+
 
 function dateValidator(value) {
     return this.startDate <= value;
