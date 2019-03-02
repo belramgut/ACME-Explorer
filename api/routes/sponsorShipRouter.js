@@ -14,7 +14,7 @@ module.exports = function (app) {
      * @url /v1/sponsorShip/search/:sponsorShipId
      */
       
-    app.route('/v1/sponsorShips/search/:sponsorShipId') //checkactorsponsor-rol
+    app.route('/v1/sponsorShips/search') //checkactorsponsor-rol
         .get(sponsorShip.search_a_sponsorShip);
     
     /**
