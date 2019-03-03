@@ -108,7 +108,7 @@ function computeavgMinMaxStdvApplicationsPerTrip(callback) {
     { $project: { _id: 0, avg: 1, min: 1, max: 1, stdev: 1 } },
     { $group: { _id: null, resultados: { $push: { avg: "$avg", min: "$min", max: "$max", stdev: "$stdev" } } } }
   ], function (err, res) {
-    callback(err, res[1].resultados);
+    callback(err, res[0].resultados);
   });
 }
 
@@ -127,6 +127,6 @@ function computeratioApplicationsGroupedByStatus(callback) {
     { $unwind: "$status" },
     { $group: { _id: null, resultados: { $push: { status: "$status", ratio: "$ratio" } } } }
   ], function (err, res) {
-    callback(err, res[2].resultados);
+    callback(err, res[0].resultados);
   });
 }
