@@ -10,7 +10,9 @@ var express = require('express'),
     Config = require('./api/models/configModel'),
     Actor = require('./api/models/actorModel'),
     SponsorShip = require('./api/models/sponsorShipModel'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    DataWareHouse = require('./api/models/dataWareHouseModel'), //created model loading here
+    DataWareHouseTools = require('./api/controllers/dataWareHouseController');
 
 
 var mongoDBUser = process.env.mongoDBUser || "myUser";
@@ -39,7 +41,8 @@ var routesApplication = require('./api/routes/applicationRouter');
 var routesFinder = require('./api/routes/finderRouter');
 var routesActor = require('./api/routes/actorRouter');
 var routesSponsorShips = require('./api/routes/sponsorShipRouter');
-var routesConfig = require('./api/routes/configRouter')
+var routesConfig = require('./api/routes/configRouter');
+var routesDataWareHouse = require('./api/routes/dataWareHouseRoutes'); //importing route
 
 routesTrips(app);
 routesApplication(app);
@@ -47,6 +50,7 @@ routesFinder(app);
 routesActor(app);
 routesSponsorShips(app);
 routesConfig(app);
+routesDataWareHouse(app);
 
 console.log("Connecting DB to: " + mongoDBURI);
 mongoose.connection.on("open", function (err, conn) {
@@ -58,3 +62,4 @@ mongoose.connection.on("open", function (err, conn) {
 mongoose.connection.on("error", function (err, conn) {
     console.error("DB init error " + err);
 });
+DataWareHouseTools.createDataWareHouseJob();
