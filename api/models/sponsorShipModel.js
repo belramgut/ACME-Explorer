@@ -24,7 +24,8 @@ var SponsorShipSchema = new Schema({
     },
     sponsor: {
         type: Schema.Types.ObjectId,
-        ref: 'Actor'
+        ref: 'Actor',
+        index:true
     },
     trip: {
         type: Schema.Types.ObjectId,
