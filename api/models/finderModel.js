@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 
 
 var FinderSchema = new Schema({
-    keyword: [{
+    keyword: {
         type: String,
         required: 'Kindly enter the keyword'
-    }],
+    },
     lowerPrice: {
         type: Number,
         min: 0,
