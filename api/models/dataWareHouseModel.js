@@ -5,15 +5,24 @@ var Schema = mongoose.Schema;
 var DataWareHouseSchema = new mongoose.Schema({
   //input aggregates
   /*
-1. The customers who have placed more non-cancelled orders (top 10%).
-2. The customers who have placed less non-cancelled orders (bottom 10%).
-3. The clerks who have served and delivered more orders (top 10%).
-4. The clerks who have served and delivered fewer orders (bottom 10%).
-5. The ratio of orders that have been cancelled during the current month.
+1. The average, the minimum, the maximum, and the standard deviation of the number of trips per manager.
+2. The average, the minimum, the maximum, and the standard deviation of the number of applications per trip.
+3. The average, the minimum, the maximum, and the standard deviation of the number of the price og the trips.
+4. The ratio of applications grouped by status.
 6. The average price range that explorers indicate in their finders.
 7. The top 10 key words that the explorers indicate in their finders.
 
 */
+
+  avgMinMaxStdvTripsPerManager: [{
+    type: Schema.Types.Array
+  }],
+  avgMinMaxStdvApplicationsPerTrip: [{
+    type: Schema.Types.Array
+  }],
+  ratioApplicationsGroupedByStatus: [{
+    type: Schema.Types.Array
+  }],
   computationMoment: {
     type: Date,
     default: Date.now
