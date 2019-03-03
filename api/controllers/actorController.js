@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-Actor = mongoose.model('Actor');
+    Actor = mongoose.model('Actor');
 
 exports.list_all_actors = function (req, res) {
     Actor.find({}, function (err, actors) {
@@ -43,18 +43,29 @@ exports.update_an_actor = function (req, res) {
     Actor.findById(req.params.actorId, function (err, actor) {
         if (err) {
             res.send(err);
+        } else {
+            var new_actor = req.body;
+
+            if (new_actor.phone.length != 9) {
+                res.status(422).send({ message: 'Phone number es incorrect' });
+            } else {
+                Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, {
+                    new: true,
+                    upsert: true,
+                    setDefaultsOnInsert: true,
+                    runValidators: true,
+                    context: 'query'
+                }, function (err, actor) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    else {
+                        res.json(actor);
+                    }
+                });
+            }
         }
-        else {
-            Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    res.json(actor);
-                }
-            });
-        }
-    });
+        });
 };
 //check administrator actor rol
 exports.delete_an_actor = function (req, res) {
