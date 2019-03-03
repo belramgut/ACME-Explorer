@@ -24,7 +24,11 @@ var DataWareHouseSchema = new mongoose.Schema({
     type: Schema.Types.Array
   }],
   topKeywords: [String],
-  avgRangeFinder: {type: Number},
+  avgRangeFinder: { type: Number },
+
+  avgMinMaxPriceTrips: [{
+    type: Schema.Types.Array
+  }],
   computationMoment: {
     type: Date,
     default: Date.now

@@ -60,18 +60,20 @@ function createDataWareHouseJob() {
       computeavgMinMaxStdvApplicationsPerTrip,
       computeratioApplicationsGroupedByStatus,
       computeAvgRangeFinder,
-      computeTopKeywords
+      computeTopKeywords,
+      computeAvgMinMaxPriceTrips
     ], function (err, results) {
       if (err) {
         console.log("Error computing datawarehouse: " + err);
       }
       else {
-        console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
+        console.log("Resultados obtenidos por las agregaciones: " + JSON.stringify(results));
         new_dataWareHouse.avgMinMaxStdvTripsPerManager = results[0];
         new_dataWareHouse.avgMinMaxStdvApplicationsPerTrip = results[1];
         new_dataWareHouse.ratioApplicationsGroupedByStatus = results[2];
         new_dataWareHouse.avgRangeFinder = results[3];
         new_dataWareHouse.topKeywords = results[4];
+        new_dataWareHouse.avgMinMaxPriceTrips = results[5];
         new_dataWareHouse.rebuildPeriod = rebuildPeriod;
 
         new_dataWareHouse.save(function (err, datawarehouse) {
@@ -138,28 +140,39 @@ function computeratioApplicationsGroupedByStatus(callback) {
 
 function computeAvgRangeFinder(callback) {
   Finder.aggregate([
-    {"$project": {"_id":0, "range": {"$subtract": ["$higherPrice", "$lowerPrice"]}}}, 
-    {"$group": {"_id": 0, "avgRange": {"$avg": "$range"}}},
-    {"$project": {"_id":0, "avgRange": 1}}
-    ], function (err, res) {
+    { "$project": { "_id": 0, "range": { "$subtract": ["$higherPrice", "$lowerPrice"] } } },
+    { "$group": { "_id": 0, "avgRange": { "$avg": "$range" } } },
+    { "$project": { "_id": 0, "avgRange": 1 } }
+  ], function (err, res) {
     callback(err, res[0].avgRange);
   });
 }
 
 function computeTopKeywords(callback) {
   Finder.aggregate([
-    {"$project": {"_id":0, "keyword": {$toLower: "$keyword"}}},
-    {"$group": {"_id": "$keyword", "count": {"$sum": 1}}},
-    { "$sort" : { count : -1} },
-    { "$limit" : 10 }
-    ], function (err, res) {
+    { "$project": { "_id": 0, "keyword": { $toLower: "$keyword" } } },
+    { "$group": { "_id": "$keyword", "count": { "$sum": 1 } } },
+    { "$sort": { count: -1 } },
+    { "$limit": 10 }
+  ], function (err, res) {
 
     var keywords = [];
 
     for (var i in res) {
       keywords.push(res[i]._id);
     }
-
+    console.log(keywords);
     callback(err, keywords);
   });
 }
+
+function computeAvgMinMaxPriceTrips(callback) {
+  Trips.aggregate([
+    { $group: { _id: 0, avg: { $avg: "$price" }, min: { $min: "$price" }, max: { $max: "$price" } } },
+    { $project: { _id: 0, avg: 1, min: 1, max: 1 } },
+    { $group: { _id: null, resultados: { $push: { avg: "$avg", min: "$min", max: "$max" } } } }
+  ], function (err, res) {
+    console.log(res[0].resultados[0]);
+    callback(err, res[0].resultados);
+  });
+};
