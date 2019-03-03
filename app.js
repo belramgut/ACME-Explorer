@@ -30,7 +30,8 @@ mongoose.connect(mongoDBURI, {
     connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     family: 4, // skip trying IPv6
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    auth:{authdb:"admin"}
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
