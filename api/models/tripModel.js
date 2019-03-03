@@ -127,6 +127,7 @@ TripSchema.pre('save', async function (callback) {
 TripSchema.index({ ticker: 'text', title: 'text', description: 'text' }, { weights: { ticker: 10, title: 5, description: 1 } });
 TripSchema.index({ price: 1 });
 
+
 function dateValidator(value) {
     return this.startDate <= value;
 }
