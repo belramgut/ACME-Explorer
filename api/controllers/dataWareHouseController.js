@@ -2,6 +2,7 @@ var async = require("async");
 var mongoose = require('mongoose'),
   DataWareHouse = mongoose.model('DataWareHouse'),
   Trips = mongoose.model('Trip'),
+  Finder = mongoose.model('Finder'),
   Applications = mongoose.model('Application');
 
 
@@ -58,15 +59,19 @@ function createDataWareHouseJob() {
       computeavgMinMaxStdvTripsPerManager,
       computeavgMinMaxStdvApplicationsPerTrip,
       computeratioApplicationsGroupedByStatus,
+      computeAvgRangeFinder,
+      computeTopKeywords
     ], function (err, results) {
       if (err) {
         console.log("Error computing datawarehouse: " + err);
       }
       else {
-        //console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
+        console.log("Resultados obtenidos por las agregaciones: "+JSON.stringify(results));
         new_dataWareHouse.avgMinMaxStdvTripsPerManager = results[0];
         new_dataWareHouse.avgMinMaxStdvApplicationsPerTrip = results[1];
         new_dataWareHouse.ratioApplicationsGroupedByStatus = results[2];
+        new_dataWareHouse.avgRangeFinder = results[3];
+        new_dataWareHouse.topKeywords = results[4];
         new_dataWareHouse.rebuildPeriod = rebuildPeriod;
 
         new_dataWareHouse.save(function (err, datawarehouse) {
@@ -128,5 +133,33 @@ function computeratioApplicationsGroupedByStatus(callback) {
     { $group: { _id: null, resultados: { $push: { status: "$status", ratio: "$ratio" } } } }
   ], function (err, res) {
     callback(err, res[0].resultados);
+  });
+}
+
+function computeAvgRangeFinder(callback) {
+  Finder.aggregate([
+    {"$project": {"_id":0, "range": {"$subtract": ["$higherPrice", "$lowerPrice"]}}}, 
+    {"$group": {"_id": 0, "avgRange": {"$avg": "$range"}}},
+    {"$project": {"_id":0, "avgRange": 1}}
+    ], function (err, res) {
+    callback(err, res[0].avgRange);
+  });
+}
+
+function computeTopKeywords(callback) {
+  Finder.aggregate([
+    {"$project": {"_id":0, "keyword": {$toLower: "$keyword"}}},
+    {"$group": {"_id": "$keyword", "count": {"$sum": 1}}},
+    { "$sort" : { count : -1} },
+    { "$limit" : 10 }
+    ], function (err, res) {
+
+    var keywords = [];
+
+    for (var i in res) {
+      keywords.push(res[i]._id);
+    }
+
+    callback(err, keywords);
   });
 }

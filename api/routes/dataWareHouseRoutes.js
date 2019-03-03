@@ -11,7 +11,7 @@ module.exports = function (app) {
 	 * @param [string] rebuildPeriod
 	 * 
 	*/
-  app.route('/dataWareHouse')
+  app.route('/v1/dataWareHouse')
     .get(dataWareHouse.list_all_indicators)
     .post(dataWareHouse.rebuildPeriod);
 
@@ -23,7 +23,7 @@ module.exports = function (app) {
 	 * @url /dataWareHouse/latest
 	 * 
 	*/
-  app.route('/dataWareHouse/latest')
+  app.route('/v1/dataWareHouse/latest')
     .get(dataWareHouse.last_indicator);
 
 };

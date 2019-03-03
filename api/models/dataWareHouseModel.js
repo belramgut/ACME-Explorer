@@ -23,6 +23,8 @@ var DataWareHouseSchema = new mongoose.Schema({
   ratioApplicationsGroupedByStatus: [{
     type: Schema.Types.Array
   }],
+  topKeywords: [String],
+  avgRangeFinder: {type: Number},
   computationMoment: {
     type: Date,
     default: Date.now

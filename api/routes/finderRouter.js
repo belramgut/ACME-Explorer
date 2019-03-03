@@ -12,9 +12,6 @@ module.exports = function (app) {
     app.route('/v1/finders/:finderId')
         .delete(finder.delete_an_finder)
         .put(finder.update_a_finder);
-    
-    app.route('/v1/finders/dashboard')
-        .get(finder.dashboard);
         
     app.route('/v1/finders/:finderId/apply_search')
         .get(finder.apply_search);

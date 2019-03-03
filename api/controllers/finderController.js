@@ -76,31 +76,3 @@ exports.apply_search = function (req, res) {
         }
     });
 };
-
-exports.dashboard = function (req, res) {
-    Finder.aggregate([
-        {"$project": {"_id":0, "range": {"$subtract": ["$higherPrice", "$lowerPrice"]}}}, 
-        {"$group": {"_id": 0, "avgRange": {"$avg": "$range"}}}
-        ], function (err, finderResult1) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            var result1 = finderResult1[0];
-            Finder.aggregate([
-                {"$project": {"_id":0, "keyword": {$toLower: "$keyword"}}},
-                {"$group": {"_id": "$keyword", "count": {"$sum": 1}}},
-                { "$sort" : { count : -1} },
-                { "$limit" : 10 }
-                ], function (err, finderResult2) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    var result = {"avgRange": result1.avgRange, "top_keywords": finderResult2}
-                    res.send(result);
-                }
-            });
-        }
-    });
-};
