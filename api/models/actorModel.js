@@ -30,6 +30,9 @@ name:{
     type:String,
     required:'Kindly enter the actor password'
   },
+  customToken: {
+    type: String
+  },
   preferredLanguaje:{
      type:String,
      default:'en'
