@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7ba976bf-50e1-4ba5-a52d-4637f981bef8",
+		"_postman_id": "d5a16a5e-8001-4bcd-b919-d04dea0a4db6",
 		"name": "ACME-Explorer copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1000,13 +1000,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/dataWareHouse",
+							"raw": "http://localhost:8080/v1/dataWareHouse",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"dataWareHouse"
 							]
 						}
