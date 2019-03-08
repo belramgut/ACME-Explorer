@@ -161,7 +161,6 @@ function computeTopKeywords(callback) {
     for (var i in res) {
       keywords.push(res[i]._id);
     }
-    console.log(keywords);
     callback(err, keywords);
   });
 }
@@ -172,7 +171,6 @@ function computeAvgMinMaxPriceTrips(callback) {
     { $project: { _id: 0, avg: 1, min: 1, max: 1 } },
     { $group: { _id: null, resultados: { $push: { avg: "$avg", min: "$min", max: "$max" } } } }
   ], function (err, res) {
-    console.log(res[0].resultados[0]);
     callback(err, res[0].resultados);
   });
 };
