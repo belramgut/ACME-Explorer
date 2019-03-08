@@ -156,6 +156,58 @@ function cancelledStartDate(value) {
     }
 }
 
+TripSchema.pre('findOneAndUpdate', function (next) {
+    if (this.getUpdate().stages) {
+        this.getUpdate().price = this.getUpdate().stages.map((stage) => {
+            return stage.price
+        }).reduce((sum, price) => {
+            return sum + price;
+        });
+    }
+    //Si estaba cancelado y se reactiva, se eliminan las razones de cancelación
+    if (this.getUpdate().cancelled == false) {
+        this.getUpdate().cancelationReasons = undefined
+    }
+
+    if (this.getUpdate().endDate <= this.getUpdate().startDate) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'Start date must be before the end date' }
+        next(err);
+    }
+
+    var date_tomorrow = new Date();
+    date_tomorrow.setDate(date_tomorrow.getDate());
+    if (!(new Date(this.getUpdate().startDate) >= date_tomorrow)) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'Start date must be after the current date' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && this.getUpdate().cancelationReasons == undefined) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'If the trip is cancelled, there must be a reason why' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && this.getUpdate().published == true) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'The trip must not be pusblished to be cancelled' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && new Date(this.getUpdate().startDate) <= date_tomorrow) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'The trip must not be start to be cancelled' }
+        next(err);
+    }
+
+    next();
+});
 
 
 module.exports = mongoose.model('Trip', TripSchema);

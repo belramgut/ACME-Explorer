@@ -44,33 +44,18 @@ exports.read_a_trip = function (req, res) {
 };
 
 exports.update_a_trip = function (req, res) {
-    var date_tomorrow = new Date();
-    date_tomorrow.setDate(date_tomorrow.getDate());
-
-    if (req.body.endDate <= req.body.startDate) {
-        res.status(422).send({ error: 'Start date must be before the end date' });
-    } else if (!(new Date(req.body.startDate) >= date_tomorrow)) {
-        res.status(422).send({ error: 'Start date must be after the current date' });
-    } else if (req.body.cancelled == true && req.body.cancelationReasons == undefined) {
-        res.status(422).send({ error: 'If the trip is cancelled, there must be a reason why' });
-    } else if (req.body.cancelled == true && req.body.published == true) {
-        res.status(422).send({ error: 'The trip must not be pusblished to be cancelled' });
-    } else if (req.body.cancelled == true && new Date(req.body.startDate) <= date_tomorrow) {
-        res.status(422).send({ error: 'The trip must not be start to be cancelled' });
-    } else {
-        Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
-            if (err) {
-                if (err.name == 'ValidationError') {
-                    res.status(422).send(err);
-                }
-                else {
-                    res.status(500).send(err);
-                }
-            } else {
-                res.json(trip);
+    Trip.findOneAndUpdate({ _id: req.params.tripId }, req.body, { new: true }, function (err, trip) {
+        if (err) {
+            if (err.name == 'ValidationError') {
+                res.status(422).send(err);
             }
-        });
-    }
+            else {
+                res.status(500).send(err);
+            }
+        } else {
+            res.json(trip);
+        }
+    });
 };
 
 exports.delete_a_trip = function (req, res) {
