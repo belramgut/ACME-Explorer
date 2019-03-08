@@ -104,9 +104,9 @@ ActorSchema.pre("findOneAndUpdate", function (callback) {
     bcrypt.hash(password, salt, function (err, hash) {
       
       if (err) return callback(err);
-      actor.update({password:hash});
-      callback();
-      console.log("contrasena hasheada", password);
+      actor.update({password:hash});      
+      callback();      
+      console.log("contrasena hasheada", hash);
     });
   });
 });
