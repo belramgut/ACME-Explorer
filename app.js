@@ -2,7 +2,7 @@
 
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 8080,
+    port = process.env.PORT || 8081,
     mongoose = require('mongoose'),
     Trip = require('./api/models/tripModel'),
     Application = require('./api/models/applicationModel'),
@@ -14,7 +14,14 @@ var express = require('express'),
     DataWareHouse = require('./api/models/dataWareHouseModel'), //created model loading here
     DataWareHouseTools = require('./api/controllers/dataWareHouseController'),
     admin = require('firebase-admin'),
-    serviceAccount = require('./acme-explorer-83187-firebase-adminsdk-xiaqt-e3ecaaba50.json');
+    serviceAccount = require('./acme-explorer-83187-firebase-adminsdk-xiaqt-e3ecaaba50.json'),
+    https = require("https"),
+    fs = require("fs");
+
+    const options = {
+        key: fs.readFileSync('./keys/server.key'),
+        cert: fs.readFileSync('./keys/server.cert')
+    };
 
 
 var mongoDBUser = process.env.mongoDBUser || "myUser";
@@ -33,11 +40,13 @@ mongoose.connect(mongoDBURI, {
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     family: 4, // skip trying IPv6
     useNewUrlParser: true,
-    auth:{authdb:"admin"}
+    auth: { authdb: "admin" }
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
 
 var routesTrips = require('./api/routes/tripRouter');
 var routesApplication = require('./api/routes/applicationRouter');
@@ -69,6 +78,7 @@ mongoose.connection.on("open", function (err, conn) {
     app.listen(port, function () {
         console.log('ACME-Explorer RESTful API server started on: ' + port);
     });
+    https.createServer(options, app).listen(8080);
 });
 
 mongoose.connection.on("error", function (err, conn) {
