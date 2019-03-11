@@ -126,7 +126,7 @@ exports.update_an_actor2 = function (req, res) {
         else {
             console.log('actor: ' + actor);
             var idToken = req.headers['idtoken'];//WE NEED the FireBase custom token in the req.header['idToken']... it is created by FireBase!!
-            if (actor.role.includes('MANAGER') || actor.role.includes('EXPLORER') || actor.role.includes('SPONSOR')) {
+            if (actor.actorType.includes('MANAGER') || actor.actorType.includes('EXPLORER') || actor.actorType.includes('SPONSOR')) {
                 var authenticatedUserId = await authController.getUserId(idToken);
                 if (authenticatedUserId == req.params.actorId) {
                     Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, { new: true }, function (err, actor) {

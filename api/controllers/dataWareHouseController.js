@@ -67,7 +67,6 @@ function createDataWareHouseJob() {
         console.log("Error computing datawarehouse: " + err);
       }
       else {
-        console.log("Resultados obtenidos por las agregaciones: " + JSON.stringify(results));
         new_dataWareHouse.avgMinMaxStdvTripsPerManager = results[0];
         new_dataWareHouse.avgMinMaxStdvApplicationsPerTrip = results[1];
         new_dataWareHouse.ratioApplicationsGroupedByStatus = results[2];
