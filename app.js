@@ -14,7 +14,8 @@ var express = require('express'),
     DataWareHouse = require('./api/models/dataWareHouseModel'), //created model loading here
     DataWareHouseTools = require('./api/controllers/dataWareHouseController'),
     admin = require('firebase-admin'),
-    serviceAccount = require('./acme-explorer-83187-firebase-adminsdk-xiaqt-e3ecaaba50.json');
+    serviceAccount = require('./acme-explorer-83187-firebase-adminsdk-xiaqt-e3ecaaba50.json'),
+    cors = require('cors');
 
 
 var mongoDBUser = process.env.mongoDBUser || "myUser";
@@ -38,6 +39,7 @@ mongoose.connect(mongoDBURI, {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 var routesTrips = require('./api/routes/tripRouter');
 var routesApplication = require('./api/routes/applicationRouter');
