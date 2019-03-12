@@ -75,46 +75,36 @@ var ActorSchema = new Schema({
 },
 
   { strict: false }); //puede recibir cosas que no estan en el modelo
-ActorSchema.pre('save', function (callback) {
-  console.log("todo recibida", this);
+
+var hashed = function (password) {
+  return new Promise(function (resolve, reject) {
+    if (password) {
+      var salt = bcrypt.genSaltSync(5);
+      var hash = bcrypt.hashSync(password, salt);
+      resolve(hash);
+    } else {
+      var error = new Error('no password');
+      reject(error);
+    }
+
+  });
+};
+
+ActorSchema.pre('save', async function (callback) {
   var actor = this;
-  // Break out if the password hasn't changed
-  if (!actor.isModified('password')) return callback();
-
-  // Password changed so we need to hash it
-  bcrypt.genSalt(5, function (err, salt) {
-    if (err) return callback(err);
-
-    bcrypt.hash(actor.password, salt, function (err, hash) {
-      if (err) return callback(err);
-      actor.password = hash;
-      callback();
-    });
-  });
+  hashed(actor.password).then(function (myhash) {
+    actor.password = myhash;
+    callback();
+  })
 });
-ActorSchema.pre("findOneAndUpdate", function (callback) {
-   var password = this.getUpdate().password;
-   var actor=this;
-  console.log("contrasena recibida", password);
-  if (!password) return callback();
-
-  bcrypt.genSalt(5, function (err, salt) {
-    if (err) return callback(err);
-
-    bcrypt.hash(password, salt, function (err, hash) {
-      
-      if (err) return callback(err);
-      actor.update({password:hash});
-      callback();
-      console.log("contrasena hasheada", password);
-    });
-  });
+ActorSchema.pre("findOneAndUpdate", async function (callback) {
+  var actor = this;
+  var password = this.getUpdate().password;
+  hashed(password).then(function (myhash) {
+    actor.update({ password: myhash })
+    callback();
+  })
 });
-
-//cojo la password del body
-//la encripto
-//se la meto con un $set al campo password
-
 
 
 ActorSchema.methods.verifyPassword = function (password, cb) {
