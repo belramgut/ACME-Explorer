@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = require('mongoose').Types.ObjectId;
-var Application = require('./applicationModel');
+var Actor = require('./actorModel');
 
 const generate = require('nanoid/generate');
 const dateFormat = require('dateformat');
@@ -80,6 +80,10 @@ var TripSchema = new Schema({
         type: Boolean,
         default: false
     },
+    manager: {
+        type: Schema.Types.ObjectId,
+        ref: 'Actor',
+    },
     stages: [StageSchema]
 }, { strict: false });
 
@@ -89,6 +93,11 @@ TripSchema.pre('save', async function (callback) {
     var new_trip = this;
     var date = new Date;
     var day = dateFormat(new Date(), "yymmdd");
+
+    const man = await Actor.findOne({ _id: this.manager }).exec();
+    if (!(man.actorType.indexOf("MANAGER") > -1)) {
+        callback(new Error('ManagerRoleError'));
+    };
 
     var generated_ticker = [day, generate('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 4)].join('-')
 
@@ -114,6 +123,10 @@ TripSchema.pre('save', async function (callback) {
     callback();
 
 });
+
+TripSchema.index({ ticker: 'text', title: 'text', description: 'text' }, { weights: { ticker: 10, title: 5, description: 1 } });
+TripSchema.index({ price: 1 });
+
 
 function dateValidator(value) {
     return this.startDate <= value;
@@ -143,6 +156,58 @@ function cancelledStartDate(value) {
     }
 }
 
+TripSchema.pre('findOneAndUpdate', function (next) {
+    if (this.getUpdate().stages) {
+        this.getUpdate().price = this.getUpdate().stages.map((stage) => {
+            return stage.price
+        }).reduce((sum, price) => {
+            return sum + price;
+        });
+    }
+    //Si estaba cancelado y se reactiva, se eliminan las razones de cancelación
+    if (this.getUpdate().cancelled == false) {
+        this.getUpdate().cancelationReasons = undefined
+    }
+
+    if (this.getUpdate().endDate <= this.getUpdate().startDate) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'Start date must be before the end date' }
+        next(err);
+    }
+
+    var date_tomorrow = new Date();
+    date_tomorrow.setDate(date_tomorrow.getDate());
+    if (!(new Date(this.getUpdate().startDate) >= date_tomorrow)) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'Start date must be after the current date' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && this.getUpdate().cancelationReasons == undefined) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'If the trip is cancelled, there must be a reason why' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && this.getUpdate().published == true) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'The trip must not be pusblished to be cancelled' }
+        next(err);
+    }
+
+    if (this.getUpdate().cancelled == true && new Date(this.getUpdate().startDate) <= date_tomorrow) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'The trip must not be start to be cancelled' }
+        next(err);
+    }
+
+    next();
+});
 
 
 module.exports = mongoose.model('Trip', TripSchema);

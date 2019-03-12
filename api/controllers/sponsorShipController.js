@@ -1,18 +1,27 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-SponsorShip = mongoose.model('SponsorShip');
+    SponsorShip = mongoose.model('SponsorShip');
 
 
 exports.search_a_sponsorShip = function (req, res) {
-    SponsorShip.findById(req.params.sponsorShipId, function (err, sponsorShip) {
+
+    var actor_id = req.query.actorId;
+
+
+    var aggregate_body = [];
+    if (typeof actor_id !== "undefined") {
+        aggregate_body = [{ $match: { sponsor: mongoose.Types.ObjectId(actor_id) } }];
+    }
+
+    SponsorShip.aggregate(aggregate_body, function (err, sponsorShip) {
         if (err) {
             res.send(err);
-        }
-        else {
-            res.json(sponsorShip);
+        } else {
+            res.send(sponsorShip);
         }
     });
+
 };
 
 
@@ -22,7 +31,13 @@ exports.update_a_sponsorShip = function (req, res) {
             res.send(err);
         }
         else {
-            SponsorShip.findOneAndUpdate({ _id: req.params.sponsorShipId }, req.body, { new: true }, function (err, actor) {
+            SponsorShip.findOneAndUpdate({ _id: req.params.sponsorShipId }, req.body, {
+                new: true,
+                upsert: true,
+                setDefaultsOnInsert: true,
+                runValidators: true,
+                context: 'query'
+            }, function (err, actor) {
                 if (err) {
                     res.send(err);
                 }

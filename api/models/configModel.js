@@ -18,6 +18,13 @@ var ConfigSchema = new Schema({
     min: 0,
     max: 100,
     required: 'Kindly enter the max result for a finder'
+  },
+  minutes_cache: {
+    type: Number,
+    default: 60,
+    min: 60,
+    max: 1440,
+    required: 'Kindly enter the cache minutes for the finder'
   }
 },
 

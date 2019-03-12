@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-Finder = mongoose.model('Finder');
+Finder = mongoose.model('Finder'),
+Trip = mongoose.model('Trip');
 
 exports.search_finders = function (req, res) {
     Finder.find({}, function (err, finders) {
@@ -54,6 +55,24 @@ exports.delete_an_finder = function (req, res) {
         }
         else {
             res.json({ message: 'Finder successfully deleted' });
+        }
+    });
+};
+
+
+exports.apply_search = function (req, res) {
+    Finder.findById(req.params.finderId, function (err, finder) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            Trip.find({}, function (err, trips) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(trips)
+                }
+            });
         }
     });
 };
