@@ -131,7 +131,6 @@ TripSchema.index({ price: 1 });
 function dateValidator(value) {
     var std = this.startDate;
     if (!std) {
-        console.log(typeof (std));
         std = new Date(this.getUpdate().startDate);
     }
     return std <= value;
