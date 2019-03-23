@@ -129,34 +129,60 @@ TripSchema.index({ price: 1 });
 
 
 function dateValidator(value) {
-    return this.startDate <= value;
+    var std = this.startDate;
+    if (!std) {
+        console.log(typeof (std));
+        std = new Date(this.getUpdate().startDate);
+    }
+    return std <= value;
 }
 
 function startDateValidator(value) {
     var date1 = new Date;
     var date_tomorrow = new Date(date1.getTime() + 86400000);
-    return this.startDate >= date_tomorrow;
+    var std = this.startDate;
+    if (!std) {
+        std = new Date(this.getUpdate().startDate);
+    }
+    return std >= date_tomorrow;
 }
 
 function cancelledValidator(value) {
-    if (value == true && this.cancelationReasons == undefined) {
+    var cr = this.cancelationReasons;
+    if (!cr) {
+        cr = this.getUpdate().cancelationReasons
+    }
+    if (value == true && cr == undefined) {
         return false;
     }
 }
 
 function cancelledPublished(value) {
-    if (value == true && this.published == true) {
+    var p = this.published
+
+    if (p != false) {
+        if (p != true) {
+            p = this.getUpdate().published
+        }
+    }
+
+    if (value == true && p == true) {
         return false;
     }
 }
 
 function cancelledStartDate(value) {
-    if (value == true && this.startDate <= new Date) {
+    var std = this.startDate;
+    if (!std) {
+        std = new Date(this.getUpdate().startDate);
+    }
+    if (value == true && std <= new Date) {
         return false;
     }
 }
 
 TripSchema.pre('findOneAndUpdate', function (next) {
+
     if (this.getUpdate().stages) {
         this.getUpdate().price = this.getUpdate().stages.map((stage) => {
             return stage.price
@@ -164,47 +190,12 @@ TripSchema.pre('findOneAndUpdate', function (next) {
             return sum + price;
         });
     }
+
     //Si estaba cancelado y se reactiva, se eliminan las razones de cancelación
     if (this.getUpdate().cancelled == false) {
         this.getUpdate().cancelationReasons = undefined
     }
 
-    if (this.getUpdate().endDate <= this.getUpdate().startDate) {
-        var err = new Error();
-        err.status = 422;
-        err.message = { error: 'Start date must be before the end date' }
-        next(err);
-    }
-
-    var date_tomorrow = new Date();
-    date_tomorrow.setDate(date_tomorrow.getDate());
-    if (!(new Date(this.getUpdate().startDate) >= date_tomorrow)) {
-        var err = new Error();
-        err.status = 422;
-        err.message = { error: 'Start date must be after the current date' }
-        next(err);
-    }
-
-    if (this.getUpdate().cancelled == true && this.getUpdate().cancelationReasons == undefined) {
-        var err = new Error();
-        err.status = 422;
-        err.message = { error: 'If the trip is cancelled, there must be a reason why' }
-        next(err);
-    }
-
-    if (this.getUpdate().cancelled == true && this.getUpdate().published == true) {
-        var err = new Error();
-        err.status = 422;
-        err.message = { error: 'The trip must not be pusblished to be cancelled' }
-        next(err);
-    }
-
-    if (this.getUpdate().cancelled == true && new Date(this.getUpdate().startDate) <= date_tomorrow) {
-        var err = new Error();
-        err.status = 422;
-        err.message = { error: 'The trip must not be start to be cancelled' }
-        next(err);
-    }
 
     next();
 });
