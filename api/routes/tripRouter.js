@@ -2,6 +2,7 @@
 
 module.exports = function (app) {
     var trip = require('../controllers/tripController');
+    var authController = require('../controllers/authController');
 
     /**
      * Get all trips
@@ -47,5 +48,23 @@ module.exports = function (app) {
         .put(trip.update_a_trip)
         .delete(trip.delete_a_trip);
 
+
+    app.route('/v2/mytrips')
+        .get(authController.verifyUser(["MANAGER"]), trip.list_all_trips);
+
+    app.route('/v2/mytrips/:tripId')
+        .get(authController.verifyUser(["MANAGER"]), trip.read_a_trip);
+
+    app.route('/v2/trips')
+        .get(trip.list_all_trips)
+        .post(authController.verifyUser(["MANAGER"]), trip.create_a_trip);
+
+    app.route('/v2/trips/search')
+        .get(trip.search_by_keyword);
+
+    app.route('/v2/trips/:tripId')
+        .get(trip.read_a_trip)
+        .put(authController.verifyUser(["MANAGER"]), trip.update_a_trip)
+        .delete(authController.verifyUser(["MANAGER"]), trip.delete_a_trip);
 
 };
