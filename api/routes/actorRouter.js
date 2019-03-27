@@ -17,6 +17,8 @@ module.exports = function (app) {
     app.route('/v1/actors')
         .get(actor.list_all_actors)
         .post(actor.create_an_actor)
+    app.route('/v2/actors')    
+        .post(authController.verifyUser(["ADMINISTRATOR"]),  actor.create_an_actor);
     /**
        * Put an actor
        *    RequiredRoles: to be the proper actor

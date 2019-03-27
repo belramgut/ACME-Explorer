@@ -2,9 +2,8 @@
 
 module.exports = function (app) {
     var sponsorShip = require('../controllers/sponsorShipController');
-    //only will be shown if are payed
-
-
+    var authController = require('../controllers/authController');
+    
     /**
      * Get a sponsorShip
      *      RequiredRoles: be the sponsor  who owns it
@@ -17,6 +16,10 @@ module.exports = function (app) {
 
     app.route('/v1/sponsorShips/search') //checkactorsponsor-rol
         .get(sponsorShip.search_a_sponsorShip);
+    
+    app.route('/v2/sponsorShips/search') //checkactorsponsor-rol
+        .get(authController.verifyUser(["SPONSOR"]),sponsorShip.search_a_sponsorShip);
+        
 
     /**
      * Put a sponsorShip
@@ -30,9 +33,13 @@ module.exports = function (app) {
      * @param {String} sponsorShipId
      */
 
-    app.route('/v1/sponsorShips/:sponsorShipId')
+    app.route('/v1/sponsorShips/:sponsorShipId')//checkactorsponsor-rol
         .put(sponsorShip.update_a_sponsorShip)
         .delete(sponsorShip.delete_a_sponsorShip);
+
+    app.route('/v2/sponsorShips/:sponsorShipId')//checkactorsponsor-rol
+        .put(authController.verifyUser(["SPONSOR"]),sponsorShip.update_a_sponsorShip)
+        .delete(authController.verifyUser(["SPONSOR"]),sponsorShip.delete_a_sponsorShip);
 
 
     /**
@@ -47,5 +54,8 @@ module.exports = function (app) {
 
     app.route('/v1/sponsorShips') //checkactorsponsor-rol
         .post(sponsorShip.create_a_sponsorShip);
+
+    app.route('/v2/sponsorShips') //checkactorsponsor-rol
+        .post(authController.verifyUser(["SPONSOR"]), sponsorShip.create_a_sponsorShip);
 
 };
