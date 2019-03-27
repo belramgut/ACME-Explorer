@@ -28,6 +28,7 @@
     "mongoose": "^5.4.10",
     "mongoose-type-url": "^1.0.5",
     "nanoid": "^2.0.1",
+    "stream-to-mongo-db": "^1.6.0",
     "validator": "^10.11.0"
   }
 }

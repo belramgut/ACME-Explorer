@@ -34,7 +34,7 @@ mongoose.connect(mongoDBURI, {
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     family: 4, // skip trying IPv6
     useNewUrlParser: true,
-    auth:{authdb:"admin"}
+    auth: { authdb: "admin" }
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -49,6 +49,7 @@ var routesSponsorShips = require('./api/routes/sponsorShipRouter');
 var routesConfig = require('./api/routes/configRouter');
 var routesDataWareHouse = require('./api/routes/dataWareHouseRoutes');
 var routesLogin = require('./api/routes/loginRoutes');
+var routesStore = require('./api/routes/storeRoutes');
 
 
 var adminConfig = {
@@ -65,6 +66,7 @@ routesSponsorShips(app);
 routesConfig(app);
 routesDataWareHouse(app);
 routesLogin(app);
+routesStore(app);
 
 console.log("Connecting DB to: " + mongoDBURI);
 mongoose.connection.on("open", function (err, conn) {

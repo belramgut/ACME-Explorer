@@ -26,6 +26,9 @@ var StageSchema = new Schema({
 
 var TripSchema = new Schema({
     ticker: {
+        type: String
+    },
+    /*ticker: {
         type: String,
         unique: true,
         validate: {
@@ -35,7 +38,7 @@ var TripSchema = new Schema({
             message: 'ticker is not valid!, Pattern("^([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))-[A-Z]{4}$")'
         }
 
-    },
+    },*/
     title: {
         type: String,
         required: 'Please, enter a title for this trip'
@@ -91,7 +94,7 @@ var TripSchema = new Schema({
 TripSchema.pre('save', async function (callback) {
 
     var new_trip = this;
-    var date = new Date;
+    /*var date = new Date;
     var day = dateFormat(new Date(), "yymmdd");
 
     const man = await Actor.findOne({ _id: this.manager }).exec();
@@ -110,7 +113,7 @@ TripSchema.pre('save', async function (callback) {
         count = await Trip.find({ ticker: generated_ticker }).count().exec();
     }
 
-    new_trip.ticker = generated_ticker;
+    new_trip.ticker = generated_ticker;*/
 
     var generated_price = 0.0;
 
@@ -124,8 +127,8 @@ TripSchema.pre('save', async function (callback) {
 
 });
 
-TripSchema.index({ ticker: 'text', title: 'text', description: 'text' }, { weights: { ticker: 10, title: 5, description: 1 } });
-TripSchema.index({ price: 1 });
+//TripSchema.index({ ticker: 'text', title: 'text', description: 'text' }, { weights: { ticker: 10, title: 5, description: 1 } });
+//TripSchema.index({ price: 1 });
 
 
 function dateValidator(value) {
@@ -147,12 +150,16 @@ function startDateValidator(value) {
 }
 
 function cancelledValidator(value) {
-    var cr = this.cancelationReasons;
-    if (!cr) {
-        cr = this.getUpdate().cancelationReasons
-    }
-    if (value == true && cr == undefined) {
-        return false;
+
+    try {
+        var cr = this.getUpdate().cancelationReasons;
+        if (value == true && cr == undefined) {
+            return false;
+        }
+    } catch (err) {
+        if (value == true && this.cancelationReasons == undefined) {
+            return false;
+        }
     }
 }
 
@@ -195,6 +202,12 @@ TripSchema.pre('findOneAndUpdate', function (next) {
         this.getUpdate().cancelationReasons = undefined
     }
 
+    if (this.getUpdate().cancelled == true && this.getUpdate().cancelationReasons == undefined) {
+        var err = new Error();
+        err.status = 422;
+        err.message = { error: 'If the trip is cancelled, there must be a reason why' }
+        next(err);
+    }
 
     next();
 });
