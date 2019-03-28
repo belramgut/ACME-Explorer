@@ -120,6 +120,10 @@ TripSchema.pre('save', async function (callback) {
 
     this.price = generated_price;
 
+    if (this.cancelled == false) {
+        this.cancelationReasons = undefined;
+    }
+
     callback();
 
 });
@@ -149,12 +153,25 @@ function startDateValidator(value) {
 function cancelledValidator(value) {
     var cr = this.cancelationReasons;
     if (!cr) {
-        cr = this.getUpdate().cancelationReasons
-    }
-    if (value == true && cr == undefined) {
-        return false;
+        try {
+            cr = this.getUpdate().cancelationReasons;
+            if (value == true && cr == undefined) {
+                return false;
+            }
+        } catch (err) {
+            console.log("ha entrado aquí como debería");
+            if (value == true && this.cancelationReasons == undefined) {
+                return false;
+            }
+        }
+
+    } else {
+        if (value == true && this.cancelationReasons == undefined) {
+            return false;
+        }
     }
 }
+
 
 function cancelledPublished(value) {
     var p = this.published
