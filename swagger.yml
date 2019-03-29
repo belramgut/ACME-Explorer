@@ -1,0 +1,294 @@
+swagger: "2.0"
+info:
+  description: "This is the acme-explorer ALISABEL project. You can find it at  https://github.com/belramgut/ACME-Explorer."
+  version: "1.0.0"
+  title: "ALISABEL Acme-Explorer"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "belramgut@alum.us.es"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "https://github.com/belramgut/ACME-Explorer"
+basePath: "/api/v1"
+
+paths:
+  /trips:
+    get:
+      tags:
+        - "trips"
+      summary: "List all the trips"
+      produces:
+        - "application/json"
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+    post:
+      tags:
+        - "trips"
+      summary: Add a new trip
+      consumes:
+        -"application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "trip"
+        description: "The trip to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - title
+            - description
+            - requirements
+            - startDate
+            - endDate
+            - manager
+          properties:
+            tiker:
+              type: string
+              pattern: ^([12]\d{3}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01]))-[A-Z]{4}$
+            title:
+              type: string
+            description:
+              type: string
+            requirements: 
+              type: array
+              items:
+                type : string
+            startDate:
+              type: string
+              format: date
+            endDate:
+              type: string
+              format: date
+            pictures:
+              type: array
+              items:
+                type: string
+            cancelled:
+              type: boolean
+            cancelationReasons:
+              type : string
+            published:
+              type: string
+            manager:
+              type: string
+            stages:
+              type: array
+              items:
+                type: object
+                required:
+                  - title
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
+
+  /trips/search:
+    get:
+      tags:
+        - "trips"
+      summary: "Search trips by ticker, title and description"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "q"
+          description: "The word to search"
+          required: true
+          schema:
+            type: string
+        - in: "query"
+          name: "sortedBy"
+          description: "The order to return"
+          required: false
+          schema:
+            type: string
+        - in : "query"
+          name: reverse
+          description: "True for reverse order"
+          schema:
+            type: boolean
+        - in: "query"
+          name: "startFrom"
+          description: "MongoDB Skip"
+          required: false
+          schema:
+            type: integer
+        - in: "query"
+          name: pageSize
+          description: "Pagination"
+          required: false
+          schema:
+            type: integer
+        - in: "query"
+          name: cancelled
+          description: "Search only in cancelled/not cancelled trips"
+          required: false
+          schema:
+            type: boolean  
+        - in: "query"
+          name: published
+          description: "Search only in published/not published trips"
+          required: false
+          schema:
+            type: boolean  
+        - in : "query"
+          name: startingPrice
+          description: "Minimum price"
+          required: false
+          schema:
+            type: numeric
+        - in: "query"
+          name: endingPrice
+          description: "Maximum price"
+          required: false
+          schema:
+            type: numeric 
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+
+  /trips/{tripId}:
+    put:
+      tags:
+      - "trips"
+      summary: "Edit the trip with the given id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: tripId
+        required: true
+        description: "ObjectId Trip identifier"
+        schema:
+          type: string
+      - in: "body"
+        name: "trip"
+        description: "The trip to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - title
+            - description
+            - requirements
+            - startDate
+            - endDate
+            - manager
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            requirements: 
+              type: array
+              items:
+                type : string
+            startDate:
+              type: string
+              format: date
+            endDate:
+              type: string
+              format: date
+            pictures:
+              type: array
+              items:
+                type: string
+            cancelled:
+              type: boolean
+            cancelationReasons:
+              type : string
+            published:
+              type: string
+            manager:
+              type: string
+            stages:
+              type: array
+              items:
+                type: object
+                required:
+                  - title
+                properties:
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
+
+    get:
+      tags:
+        - "trips"
+      summary: "Get the trip with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: tripId
+        required: true
+        description: "ObjectId Trip identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+
+    delete:
+      tags:
+        - "trips"
+      summary: "delete the trip with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: tripId
+        required: true
+        description: "ObjectId Trip identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+
+    
+
+
+
+
+
+        
+      
+
+
+
+ 

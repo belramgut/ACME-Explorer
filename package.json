@@ -28,6 +28,8 @@
     "mongoose": "^5.4.10",
     "mongoose-type-url": "^1.0.5",
     "nanoid": "^2.0.1",
-    "validator": "^10.11.0"
+    "swagger-ui-express": "^4.0.2",
+    "validator": "^10.11.0",
+    "yamljs": "^0.3.0"
   }
 }

@@ -18,6 +18,10 @@ var express = require('express'),
     cors = require('cors');
 
 
+var swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yml');
+
 var mongoDBUser = process.env.mongoDBUser || "myUser";
 var mongoDbPass = process.env.mongoDbPass || "myUserPassword";
 var mongoDbCredentials = (mongoDBUser && mongoDbPass) ? mongoDBUser + ":" + mongoDbPass + "@" : "";
@@ -40,6 +44,8 @@ mongoose.connect(mongoDBURI, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 var routesTrips = require('./api/routes/tripRouter');
 var routesApplication = require('./api/routes/applicationRouter');
