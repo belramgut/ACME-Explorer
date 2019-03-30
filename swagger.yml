@@ -9,8 +9,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "https://github.com/belramgut/ACME-Explorer"
-basePath: "/api/v1"
+host: "localhost:8080"
+basePath: "/v1"
 
 paths:
   /trips:
@@ -272,6 +272,179 @@ paths:
         name: tripId
         required: true
         description: "ObjectId Trip identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+
+  /actors:
+    get:
+      tags:
+        - "actors"
+      summary: "List all the actors"
+      produces:
+        - "application/json"
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+    post:
+      tags:
+        - "actors"
+      summary: Add a new actor
+      consumes:
+        -"application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "actors"
+        description: "The actors to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - name
+            - surname
+            - email
+            - password
+            - actorType
+          properties:
+            name:
+              type: string
+            surname:
+              type: string
+            email:
+              type: string
+            password: 
+              type: string
+            customToken:
+              type: string
+            preferredLanguaje:
+              type: string
+            phoneNumber:
+              type: string
+              pattern: /^\d{9}$/
+            address:
+              type: string
+            photo:
+              type : array
+            actorType:
+              type: string
+            created:
+              type: string
+              format: date
+            banned:
+              type: boolean
+            flat_rate:
+              type: boolean              
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
+
+  /actors/{actorId}:
+    put:
+      tags:
+      - "actors"
+      summary: "Edit the actor with the given id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: actorId
+        required: true
+        description: "ObjectId Actor identifier"
+        schema:
+          type: string
+      - in: "body"
+        name: "actor"
+        description: "The actor to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - name
+            - surname
+            - email
+            - password
+            - actorType
+          properties:
+            name:
+              type: string
+            surname:
+              type: string
+            email:
+              type: string
+            password: 
+              type: string
+            customToken:
+              type: string
+            preferredLanguaje:
+              type: string
+            phoneNumber:
+              type: string
+              pattern: /^\d{9}$/
+            address:
+              type: string
+            photo:
+              type : array
+            actorType:
+              type: string
+            created:
+              type: string
+              format: date
+            banned:
+              type: boolean
+            flat_rate:
+              type: boolean     
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
+
+    get:
+      tags:
+        - "actors"
+      summary: "Get the actor with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: actorId
+        required: true
+        description: "ObjectId Actor identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+
+    delete:
+      tags:
+        - "actors"
+      summary: "delete the actor with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: actorId
+        required: true
+        description: "ObjectId Actor identifier"
         schema:
           type: string
       responses:

@@ -66,6 +66,9 @@ exports.login_an_actor = async function (req, res) {
 //check administrator actor rol
 exports.create_an_actor = function (req, res) {
     var new_actor = new Actor(req.body);
+    if (new_actor.phone.length != 9) {
+        res.status(422).send({ message: 'Phone number es incorrect' });
+    } else {
 
     new_actor.save(function (error, actor) {
         if (error) {
@@ -75,6 +78,7 @@ exports.create_an_actor = function (req, res) {
             res.json(actor);
         }
     });
+    }
 };
 //check administrator actor rol
 exports.read_an_actor = function (req, res) {
