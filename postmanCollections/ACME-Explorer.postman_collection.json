@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5a16a5e-8001-4bcd-b919-d04dea0a4db6",
+		"_postman_id": "8ea56682-d4d0-40a1-860a-0fe59b0e3bcb",
 		"name": "ACME-Explorer copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -20,7 +20,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor_n@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+							"raw": "{\n\t\"email\": \"sponsor_n@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/v1/actors",
@@ -48,7 +48,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/v1/actors",
@@ -77,6 +77,118 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsorpp_p_o@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"0\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR SPONSOR(flat_rate:true)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff84\",\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor13@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\",\n\t\"flat_rate\":true\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR MANAGER",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff848\",\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor3@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"MANAGER\",\n\t\"address\": \"myAddress\",\n\t\"flat_rate\":true\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR SPONSOR(flat_rate:false)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff842\",\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor2@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/actors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST ACTOR ADMINISTRATOR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff843\",\n\t\"name\": \"administratorName\",\n\t\"surname\": \"administratorSurname\",\n\t\"email\": \"administrato3r@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"ADMINISTRATOR\",\n\t\"address\": \"myAddress\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/v1/actors",
@@ -135,7 +247,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/v1/actors/5c69c780fe34ef3ab388aab6",
+							"raw": "localhost:8080/v1/actors/5c74ef8c52d4fa6d6ffff841",
 							"host": [
 								"localhost"
 							],
@@ -143,7 +255,7 @@
 							"path": [
 								"v1",
 								"actors",
-								"5c69c780fe34ef3ab388aab6"
+								"5c74ef8c52d4fa6d6ffff841"
 							]
 						}
 					},
@@ -161,10 +273,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"SponsorName_PUT\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
+							"raw": "{\n\t\"name\": \"SponsorName_PUT\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor4@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phoneNumber\": \"612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\",\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff841\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/v1/actors/5c69b7e67bd8a02c85a8734e",
+							"raw": "localhost:8080/v1/actors/5c74ef8c52d4fa6d6ffff841",
 							"host": [
 								"localhost"
 							],
@@ -172,7 +284,7 @@
 							"path": [
 								"v1",
 								"actors",
-								"5c69b7e67bd8a02c85a8734e"
+								"5c74ef8c52d4fa6d6ffff841"
 							]
 						}
 					},
@@ -193,7 +305,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/v1/actors/5c69b945af26172ee262fd61",
+							"raw": "localhost:8080/v1/actors/5c74ef8c52d4fa6d6ffff841",
 							"host": [
 								"localhost"
 							],
@@ -201,296 +313,7 @@
 							"path": [
 								"v1",
 								"actors",
-								"5c69b945af26172ee262fd61"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST ACTOR SPONSOR(flat_rate:true)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\",\n\t\"flat_rate\":true\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/actors",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"actors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST ACTOR SPONSOR(flat_rate:false)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"SponsorName\",\n\t\"surname\": \"SponsorSurname\",\n\t\"email\": \"sponsor@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"SPONSOR\",\n\t\"address\": \"myAddress\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/actors",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"actors"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST ACTOR ADMINISTRATOR",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"administratorName\",\n\t\"surname\": \"administratorSurname\",\n\t\"email\": \"administrator@gmail.com\",\n\t\"password\": \"mypass\",\n\t\"preferredLanguaje\":\"en\",\n\t\"phone\": \"+34612345678\",\n\t\"actorType\": \"ADMINISTRATOR\",\n\t\"address\": \"myAddress\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/actors",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"actors"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "SPONSORSHIPS",
-			"item": [
-				{
-					"name": "POST SPONSORSHIP ACTOR (flat_rate:true)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"landingPage\": \"https://github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c69fa06826f8b6b6accbf8a\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST SPONSORSHIP ACTOR (flat_rate:false)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"landingPage\": \"http://masteroficial.us.es/mis/\",\n\t\"sponsor\": \"5c6a7f69d2093f1cec42478f\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST SPONSORTRIP(delete)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"landingPage\": \"http://masteroficial.us.es/mis/\",\n\t\"sponsor\": \"5c69d0c7db9c634728b1713f\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE A SPONSORSHIP",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips/5c6a82f8d6d4521fc08c1bd8",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips",
-								"5c6a82f8d6d4521fc08c1bd8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PUT A SPONSORSHIP",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"landingPage\": \"https://us.es\"\n\n}\n"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips/5c6a0906dd3e1e7c8b1bcaf8",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips",
-								"5c6a0906dd3e1e7c8b1bcaf8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET AN SPONSORSHIP",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips/search/5c6a0906dd3e1e7c8b1bcaf8",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips",
-								"search",
-								"5c6a0906dd3e1e7c8b1bcaf8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST SPONSORSHIP FACE LANDING PAGE",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"landingPage\": \"github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c69fa06826f8b6b6accbf8a\",\n\t\"trip\":\"5c69c1aa28f3d0382b5c85c5\"\n\n}\n"
-						},
-						"url": {
-							"raw": "localhost:8080/v1/sponsorShips",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"sponsorShips"
+								"5c74ef8c52d4fa6d6ffff841"
 							]
 						}
 					},
@@ -539,7 +362,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -570,7 +393,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-12-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-12-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -601,7 +424,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2017-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": false,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2017-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -632,7 +455,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337184\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -663,7 +486,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337185\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"cancelationReasons\": \"Few attendees\",\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"cancelationReasons\": \"Few attendees\",\n        \"published\": false,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -694,7 +517,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337185\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"cancelationReasons\": \"Few attendees\",\n        \"published\": true,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff846\"\n    }"
+							"raw": " {\t\t\"_id\": \"5c5410a9f0481f4870337185\",\n        \"requirements\": [\"We will need you to be older than 25\",  \"You must know speak portuguese\"],\n        \"cancelled\": true,\n        \"cancelationReasons\": \"Few attendees\",\n        \"published\": true,\n        \"title\": \"Two months in Lisboa\",\n        \"description\": \"Lisbon is the spectacular capital of Portugal and one of the most vibrant and charismatic cities in Europe; it is a city that effortlessly blends its heritage and tradition with striking modernism and progressive thinking.As a holiday destination, Lisbon offers a rich and varied history, a lively nightlife and a fantastic climate all year round. On this trip you will find an introduction to Lisbon, answers to some of the most common questions about a holiday there and more detailed historical information. \",\n        \"startDate\": \"2019-08-11T04:11:00.000Z\",\n        \"endDate\": \"2019-10-11T04:11:00.000Z\",\n        \"stages\": [{\"title\":\"History\",\"description\":\"Visit the most historical places of the city with the help of guides who will tell you all the details!\", \"price\":80.90},{\"title\":\"Leisure places\",\"description\":\"Meet the most popular Lisbon sites to make friends and have a great time! \", \"price\":50.80}],\n        \"pictures\": [],\n        \"manager\": \"5c74ef8c52d4fa6d6ffff848\"\n    }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/v1/trips",
@@ -897,31 +720,6 @@
 					"response": []
 				},
 				{
-					"name": "DELETE /trips/tripId",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/v1/trips/5c5410a9f0481f4870337185",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"trips",
-								"5c5410a9f0481f4870337185"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GET trips/search",
 					"request": {
 						"method": "GET",
@@ -1013,303 +811,530 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "DELETE /trips/tripId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/trips/5c5410a9f0481f4870337184",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"trips",
+								"5c5410a9f0481f4870337184"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "GET /applications/search",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/applications/search",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"applications",
-						"search"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET /application/:applicationId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/application/:applicationId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"application",
-						":applicationId"
-					],
-					"variable": [
-						{
-							"key": "applicationId",
-							"value": "5c6a7606f57d2c49b3f5bf1c"
+			"name": "SPONSORSHIPS",
+			"item": [
+				{
+					"name": "POST SPONSORSHIP ACTOR (flat_rate:true)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"https://github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c74ef8c52d4fa6d6ffff847\",\n\t\"trip\":\"5c5410a9f0481f4870337187\",\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff841\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT /application/:applicationId",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"comments\": [\"Nada\"],\n\t\"explorer\": \"5c6a7516f57d2c49b3f5bf1b\",\n\t\"trip\": \"5c6a7335cf8b034731e0d85d\"\n}"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/v1/application/:applicationId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"application",
-						":applicationId"
-					],
-					"variable": [
-						{
-							"key": "applicationId",
-							"value": "5c6a7606f57d2c49b3f5bf1c"
+				{
+					"name": "POST SPONSORSHIP ACTOR (flat_rate:false)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"http://masteroficial.us.es/mis/\",\n\t\"sponsor\": \"5c74ef8c52d4fa6d6ffff847\",\n\t\"trip\":\"5c5410a9f0481f4870337187\",\n\t\"_id\": \"5c74ef8c52d4fa6d6ffff842\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE /application/:applicationId",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"comments\": [\"Nada\"],\n\t\"explorer\": \"5c6a7516f57d2c49b3f5bf1b\",\n\t\"trip\": \"5c6a7335cf8b034731e0d85d\"\n}"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/v1/application/:applicationId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"application",
-						":applicationId"
-					],
-					"variable": [
-						{
-							"key": "applicationId",
-							"value": "5c6a7606f57d2c49b3f5bf1c"
+				{
+					"name": "POST SPONSORSHIP FAKE LANDING PAGE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"://github.com/swagger-api/swagger-node\",\n\t\"sponsor\": \"5c74ef8c52d4fa6d6ffff847\",\n\t\"trip\":\"5c5410a9f0481f4870337187\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST /applications",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"comments\": [\"Hola\", \"Adios\"],\n\t\"explorer\": \"5c6a7516f57d2c49b3f5bf1b\",\n\t\"trip\": \"5c6a7335cf8b034731e0d85d\"\n}"
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/v1/applications",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"applications"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET /finders/search",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/finders/search",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"finders",
-						"search"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "POST /finders",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"fromDate\": \"2020-08-28T04:11:00.000Z\",\n    \"toDate\": \"2020-08-30T04:11:00.000Z\",\n    \"keyword\": \"sauna\",\n    \"lowerPrice\": 50,\n    \"higherPrice\": 250,\n    \"explorer\": \"5c6a7516f57d2c49b3f5bf1b\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/finders",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"finders"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE /finder/:finderId",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/finder/:finderId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"finder",
-						":finderId"
-					],
-					"variable": [
-						{
-							"key": "finderId",
-							"value": "5c6a7935cbf0724d8cf40fc0"
+				{
+					"name": "GET AN SPONSORSHIP",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/search?actorId=5c6a7f69d2093f1cec42478f",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"search"
+							],
+							"query": [
+								{
+									"key": "actorId",
+									"value": "5c6a7f69d2093f1cec42478f"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "PUT A SPONSORSHIP",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"landingPage\": \"https://us.es\"\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/5c74ef8c52d4fa6d6ffff841",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"5c74ef8c52d4fa6d6ffff841"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE A SPONSORSHIP",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/v1/sponsorShips/5c74ef8c52d4fa6d6ffff841",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"sponsorShips",
+								"5c74ef8c52d4fa6d6ffff841"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "PUT /finder/:finderId",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"fromDate\": \"2020-08-28T04:11:00.000Z\",\n    \"toDate\": \"2020-08-30T04:11:00.000Z\",\n    \"keyword\": \"sauna\",\n    \"lowerPrice\": 150,\n    \"higherPrice\": 250,\n    \"explorer\": \"5c6a7516f57d2c49b3f5bf1b\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/v1/finder/:finderId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"v1",
-						"finder",
-						":finderId"
-					],
-					"variable": [
-						{
-							"key": "finderId",
-							"value": "5c6a79c46e10564e33772d93"
+			"name": "APPLICATIONS",
+			"item": [
+				{
+					"name": "POST /applications",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comments\": [\"Hola\", \"Adios\"],\n\t\"explorer\": \"5c74ef8c52d4fa6d6ffff855\",\n\t\"trip\": \"5c5410a9f0481f4870337188\",\n\t\"_id\": \"5ca10a240b15fd7a01bfaf86\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/applications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"applications"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "GET /applications/search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/applications/search?tripId=5c5410a9f0481f4870337188&actorId=5c74ef8c52d4fa6d6ffff855",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"applications",
+								"search"
+							],
+							"query": [
+								{
+									"key": "tripId",
+									"value": "5c5410a9f0481f4870337188"
+								},
+								{
+									"key": "actorId",
+									"value": "5c74ef8c52d4fa6d6ffff855"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /application/:applicationId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/applications/:applicationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"applications",
+								":applicationId"
+							],
+							"variable": [
+								{
+									"key": "applicationId",
+									"value": "5ca10a240b15fd7a01bfaf86"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /application/:applicationId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"CANCELLED\",\n    \"comments\": [\n        \"Hola\",\n        \"Adios\"\n    ],\n    \"_id\": \"5ca10a240b15fd7a01bfaf86\",\n    \"explorer\": \"5c74ef8c52d4fa6d6ffff855\",\n    \"trip\": \"5c5410a9f0481f4870337188\",\n    \"applicationMoment\": \"2019-03-31T18:43:25.886Z\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/applications/:applicationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"applications",
+								":applicationId"
+							],
+							"variable": [
+								{
+									"key": "applicationId",
+									"value": "5ca10a240b15fd7a01bfaf86"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /application/:applicationId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comments\": [\"Nada\"],\n\t\"explorer\": \"5c6a7516f57d2c49b3f5bf1b\",\n\t\"trip\": \"5c6a7335cf8b034731e0d85d\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/applications/:applicationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"applications",
+								":applicationId"
+							],
+							"variable": [
+								{
+									"key": "applicationId",
+									"value": "5ca10a240b15fd7a01bfaf86"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "FINDERS",
+			"item": [
+				{
+					"name": "GET /finders/search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/finders/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"finders",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /finders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fromDate\": \"2020-08-28T04:11:00.000Z\",\n    \"toDate\": \"2020-08-30T04:11:00.000Z\",\n    \"keyword\": \"sauna\",\n    \"lowerPrice\": 50,\n    \"higherPrice\": 250,\n    \"explorer\": \"5c74ef8c52d4fa6d6ffff855\",\n     \"_id\": \"5ca10c83fc201c034f331976\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/finders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"finders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /finder/:finderId",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"5ca10c83fc201c034f331976\",\n    \"fromDate\": \"2020-08-28T04:11:00.000Z\",\n    \"toDate\": \"2020-08-30T04:11:00.000Z\",\n    \"keyword\": \"sauna\",\n    \"lowerPrice\": 60,\n    \"higherPrice\": 250,\n    \"explorer\": \"5c74ef8c52d4fa6d6ffff855\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/finders/:finderId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"finders",
+								":finderId"
+							],
+							"variable": [
+								{
+									"key": "finderId",
+									"value": "5ca10c83fc201c034f331976"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /finder/:finderId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/finders/:finderId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"finders",
+								":finderId"
+							],
+							"variable": [
+								{
+									"key": "finderId",
+									"value": "5ca10c83fc201c034f331976"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

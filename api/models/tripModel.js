@@ -159,7 +159,6 @@ function cancelledValidator(value) {
                 return false;
             }
         } catch (err) {
-            console.log("ha entrado aquí como debería");
             if (value == true && this.cancelationReasons == undefined) {
                 return false;
             }
