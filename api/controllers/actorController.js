@@ -66,7 +66,7 @@ exports.login_an_actor = async function (req, res) {
 //check administrator actor rol
 exports.create_an_actor = function (req, res) {
     var new_actor = new Actor(req.body);
-    if (new_actor.phone.length != 9) {
+    if (new_actor.phoneNumber.length != 9) {
         res.status(422).send({ message: 'Phone number es incorrect' });
     } else {
 
@@ -100,7 +100,7 @@ exports.update_an_actor = function (req, res) {
         } else {
             var new_actor = req.body;
 
-            if (new_actor.phone.length != 9) {
+            if (new_actor.phoneNumber.length != 9) {
                 res.status(422).send({ message: 'Phone number es incorrect' });
             } else {
                 Actor.findOneAndUpdate({ _id: req.params.actorId }, req.body, {
