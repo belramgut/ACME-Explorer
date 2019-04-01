@@ -452,16 +452,298 @@ paths:
           description: "Internal server error"
         '200':
           description: "OK"
+  /applications/search:
+    get:
+      tags:
+        - "applications"
+      summary: "List search for applications"
+      produces:
+        - "application/json"
+      parameters:
+        - in: query
+          name: tripId
+          schema:
+            type: string
+          description: Trip id
+        - in: query
+          name: actorId
+          schema:
+            type: string
+          description: Actor id
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+  /applications:
+    post:
+      tags:
+        - "applications"
+      summary: Add a new application
+      consumes:
+        -"application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "application"
+        description: "The application to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - comments
+            - explorer
+            - trip
+          properties:
+            comments:
+              type: array
+              items:
+                type: string
+            explorer:
+              type: string
+            trip:
+              type: string
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
 
-    
+  /applications/{applicationId}:
+    put:
+      tags:
+      - "applications"
+      summary: "Edit the application with the given id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: applicationId
+        required: true
+        description: "ObjectId Application identifier"
+        schema:
+          type: string
+      - in: "body"
+        name: "application"
+        description: "The application to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - comments
+            - explorer
+            - trip
+            - status
+          properties:
+            comments:
+              type: array
+              items:
+                type: string
+            explorer:
+              type: string
+            trip:
+              type: string
+            status:
+              type: string
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
 
+    get:
+      tags:
+        - "applications"
+      summary: "Get the application with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: applicationId
+        required: true
+        description: "ObjectId Application identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
 
+    delete:
+      tags:
+        - "applications"
+      summary: "delete the application with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: applicationId
+        required: true
+        description: "ObjectId Application identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
 
+  
 
+  /finders/search:
+    get:
+      tags:
+        - "finders"
+      summary: "Get all finders"
+      produces:
+        - "application/json"
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
+  /finders:
+    post:
+      tags:
+        - "finders"
+      summary: Add a new finder
+      consumes:
+        -"application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "finder"
+        description: "The finder to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - keyword
+            - lowerPrice
+            - higherPrice
+            - fromDate
+            - toDate
+            - explorer
+          properties:
+            comments:
+              type: string
+            explorer:
+              type: string
+            lowerPrice:
+              type: number
+            higherPrice:
+              type: number
+            fromDate:
+              type: string
+              format: date
+            toDate:
+              type: string
+              format: date
+            
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
 
-        
-      
+  /finders/{finderId}:
+    put:
+      tags:
+      - "finders"
+      summary: "Edit the finder with the given id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: finderId
+        required: true
+        description: "ObjectId Finder identifier"
+        schema:
+          type: string
+      - in: "body"
+        name: "finder"
+        description: "The finder to create"
+        required: true
+        schema:
+          type: object
+          required: 
+            - keyword
+            - lowerPrice
+            - higherPrice
+            - fromDate
+            - toDate
+            - explorer
+          properties:
+            comments:
+              type: string
+            explorer:
+              type: string
+            lowerPrice:
+              type: number
+            higherPrice:
+              type: number
+            fromDate:
+              type: string
+              format: date
+            toDate:
+              type: string
+              format: date
+      responses:
+        '201':
+          description: "Created"
+        '500':
+          description: "Internal Server Error"
+        '422':
+          description: "Validation Error"
 
+    delete:
+      tags:
+        - "finders"
+      summary: "delete the finder with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: finderId
+        required: true
+        description: "ObjectId Finder identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
 
-
- 
+  /finders/{finderId}/apply_search:
+    get:
+      tags:
+        - "finders"
+      summary: "Apply search for finder with the given id"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: finderId
+        required: true
+        description: "ObjectId Finder identifier"
+        schema:
+          type: string
+      responses:
+        '500':
+          description: "Internal server error"
+        '200':
+          description: "OK"
