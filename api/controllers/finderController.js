@@ -66,7 +66,12 @@ exports.apply_search = function (req, res) {
             res.send(err);
         }
         else {
-            Trip.find({}, function (err, trips) {
+            Trip.find({price: { $gt: finder.lowerPrice, 
+                                $lt: finder.higherPrice}, 
+                       startDate: { $gt: finder.fromDate},
+                       endDate: {$lt: finder.toDate}, 
+                       $text: { $search: finder.keyword}}, 
+            function (err, trips) {
                 if (err) {
                     res.send(err);
                 } else {

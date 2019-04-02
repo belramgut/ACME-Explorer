@@ -1228,6 +1228,38 @@
 					"response": []
 				},
 				{
+					"name": "GET /finders/apply_search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/finders/:finderId/apply_search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"finders",
+								":finderId",
+								"apply_search"
+							],
+							"variable": [
+								{
+									"key": "finderId",
+									"value": "5c7eb6f729eb506bf9e65750"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "POST /finders",
 					"request": {
 						"method": "POST",
